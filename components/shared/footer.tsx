@@ -1,0 +1,95 @@
+"use client";
+
+import { Check } from "lucide-react";
+import { Button } from "../ui/button";
+import { useRouter } from "next/navigation";
+import { FaInstagram, FaFacebookF, FaTwitter } from "react-icons/fa";
+export const Footer = () => {
+  const router = useRouter();
+  return (
+    <footer className="w-full bg-primary text-white py-12">
+      <div className="max-w-6xl mx-auto px-6 flex flex-col md:flex-row justify-between gap-8">
+        {/* Left Section */}
+        <div className="flex flex-col space-y-2">
+          <h2 className="text-xl font-bold text-subtext">
+            READY TO GET STARTED?
+          </h2>
+          <div>
+            <h1 className="text-background text-3xl font-semibold">
+              Book Your Appointment
+            </h1>
+            <p className="mt-2">
+              Same-day and next-day appointments available. New patients always
+              welcome.
+            </p>
+
+            <div className="flex flex-wrap gap-4 mt-5">
+              <div className="flex items-center gap-2 w-48">
+                <Check className="text-subtext" />
+                <span>Same-day availability</span>
+              </div>
+              <div className="flex items-center gap-2 w-48">
+                <Check className="text-subtext" />
+                <span>New patients welcome</span>
+              </div>
+              <div className="flex items-center gap-2 w-48">
+                <Check className="text-subtext" />
+                <span>Most insurance accepted</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        {/* Right Section */}
+        <div className="flex flex-col md:items-end lg:items-left items-center gap-4 mt-6 md:mt-0">
+          <Button
+            onClick={() => router.push("/contact")}
+            variant="outline"
+            className="border-white text-primary hover:bg-white hover:text-primary w-fit px-6 py-4 rounded-xl"
+          >
+            Book an Appointment
+          </Button>
+          <Button
+            variant="outline"
+            className="border-white text-primary hover:bg-white hover:text-primary w-fit px-6 py-4 rounded-xl"
+          >
+            Call Us
+          </Button>
+        </div>
+      </div>
+
+      {/* Footer Bottom */}
+      <div className="mt-8 flex flex-col items-center gap-4">
+        <div className="text-secondary text-sm text-center">
+          &copy; {new Date().getFullYear()} One Health. All rights reserved.
+        </div>
+
+        <div className="flex gap-10">
+          <a
+            href="https://www.instagram.com/yourprofile"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            <FaInstagram size={"25px"} />
+          </a>
+
+          <a
+            href="https://www.facebook.com/OneHeathSoUtah"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            <FaFacebookF size={"25px"} />
+          </a>
+
+          <a
+            href="https://x.com/OneHealth_Utah"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            <FaTwitter size={"25px"} />
+          </a>
+        </div>
+      </div>
+    </footer>
+  );
+};
