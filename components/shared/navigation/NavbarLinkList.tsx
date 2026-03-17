@@ -1,9 +1,11 @@
 import { NavbarLinkType } from "./NavbarLink";
 import { NavbarLink } from "./NavbarLink";
+import { NavbarSearch } from "./NavbarSearch";
 
 export const NavbarLinkList = ({ links }: { links: NavbarLinkType[] }) => {
   return (
     <div className="flex items-center gap-9 px-5">
+      <NavbarSearch />
       {links.map((link) => (
         <NavbarLink
           className="text-white text-lg hover:text-white"

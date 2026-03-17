@@ -62,7 +62,7 @@
   --primary-foreground: oklch(0.985 0 0);
   --secondary: #7dd7e2;
   --secondary-foreground: oklch(0.205 0 0);
-  --muted: oklch(0.97 0 0);
+  --muted: #273a3a;
   --muted-foreground: oklch(0.556 0 0);
   --accent: oklch(0.97 0 0);
   --accent-foreground: oklch(0.205 0 0);
@@ -132,4 +132,158 @@
   html {
     @apply font-sans;
   }
+}
+
+/* ── NavbarSearch ─────────────────────────────────────────── */
+
+#search-wrapper {
+  position: relative;
+  width: 220px;
+  display: flex; /* add this */
+  align-items: center; /* add this */
+  transition: width 0.2s ease;
+}
+#search-wrapper.focused {
+  width: 280px;
+}
+
+#search-wrapper .sw-icon {
+  position: absolute;
+  left: 10px;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 14px;
+  height: 14px;
+  color: rgba(255, 255, 255, 0.45);
+  pointer-events: none;
+  z-index: 10;
+  transition: color 0.2s ease;
+}
+#search-wrapper.focused .sw-icon {
+  color: var(--secondary);
+}
+
+#search-wrapper .sw-badge {
+  position: absolute;
+  right: 8px;
+  top: 50%;
+  transform: translateY(-50%);
+  display: flex;
+  gap: 2px;
+  pointer-events: none;
+  z-index: 10;
+  opacity: 1;
+  transition: opacity 0.15s ease;
+}
+#search-wrapper.focused .sw-badge {
+  opacity: 0;
+}
+#search-wrapper .sw-badge kbd {
+  font-family: var(--font-geist-sans), ui-sans-serif, sans-serif;
+  font-size: 10px;
+  font-weight: 500;
+  line-height: 1;
+  color: rgba(255, 255, 255, 0.4);
+  background: rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(255, 255, 255, 0.14);
+  border-radius: 4px;
+  padding: 2px 5px;
+}
+#search {
+  position: relative;
+}
+#search .pagefind-ui__form {
+  margin: 0 !important;
+}
+#search .pagefind-ui__search-input {
+  width: 100% !important;
+  height: 34px !important;
+  padding: 0 56px 0 32px !important;
+  font-family: var(--font-geist-sans), ui-sans-serif, sans-serif !important;
+  font-size: 13px !important;
+  font-weight: 400 !important;
+  color: rgba(255, 255, 255, 0.9) !important;
+  background: rgba(255, 255, 255, 0.07) !important;
+  border: 1px solid rgba(255, 255, 255, 0.12) !important;
+  border-radius: 8px !important;
+  outline: none !important;
+  box-shadow: none !important;
+  transition:
+    background 0.2s ease,
+    border-color 0.2s ease,
+    box-shadow 0.2s ease !important;
+  appearance: none !important;
+  -webkit-appearance: none !important;
+}
+#search .pagefind-ui__search-input::placeholder {
+  color: rgba(255, 255, 255, 0.3) !important;
+}
+#search .pagefind-ui__search-input:focus {
+  background: rgba(255, 255, 255, 0.11) !important;
+  border-color: var(--secondary) !important;
+  box-shadow: 0 0 0 2.5px color-mix(in srgb, var(--secondary) 20%, transparent) !important;
+}
+
+#search .pagefind-ui__search-clear,
+#search button[type="submit"] {
+  display: none !important;
+}
+
+#search .pagefind-ui__drawer {
+  position: absolute !important;
+  left: 0 !important;
+  right: 0 !important;
+  margin-top: 6px !important;
+  background: #163535 !important;
+  border: 1px solid rgba(125, 215, 226, 0.18) !important;
+  border-radius: 10px !important;
+  box-shadow:
+    0 8px 24px rgba(0, 0, 0, 0.35),
+    0 2px 6px rgba(0, 0, 0, 0.2) !important;
+  padding: 4px !important;
+  z-index: 55 !important;
+  overflow: hidden !important;
+}
+
+#search .pagefind-ui__result-link {
+  text-decoration: none !important;
+}
+#search .pagefind-ui__result {
+  padding: 9px 11px !important;
+  border-radius: 7px !important;
+  border: none !important;
+  transition: background 0.12s ease !important;
+  cursor: pointer !important;
+}
+#search .pagefind-ui__result:hover {
+  background: rgba(125, 215, 226, 0.09) !important;
+}
+
+#search .pagefind-ui__result-title {
+  font-family: var(--font-geist-sans), ui-sans-serif, sans-serif !important;
+  font-size: 13px !important;
+  font-weight: 600 !important;
+  color: rgba(255, 255, 255, 0.88) !important;
+}
+#search .pagefind-ui__result-excerpt {
+  font-family: var(--font-geist-sans), ui-sans-serif, sans-serif !important;
+  font-size: 12px !important;
+  color: rgba(255, 255, 255, 0.45) !important;
+  margin-top: 3px !important;
+  line-height: 1.55 !important;
+}
+
+#search mark {
+  background: color-mix(in srgb, var(--secondary) 22%, transparent) !important;
+  color: var(--secondary) !important;
+  border-radius: 3px !important;
+  padding: 0 2px !important;
+}
+
+#search .pagefind-ui__message {
+  font-family: var(--font-geist-sans), ui-sans-serif, sans-serif !important;
+  font-size: 12px !important;
+  color: rgba(255, 255, 255, 0.35) !important;
+  padding: 10px 12px !important;
+  text-align: center !important;
 }

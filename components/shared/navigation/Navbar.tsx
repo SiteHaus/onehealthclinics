@@ -9,7 +9,7 @@ interface NavbarProps {
 
 export const Navbar = ({ links }: NavbarProps) => {
   return (
-    <div className="sticky top-0 z-50 w-full flex items-center justify-between px-6 py-2 bg-navbar border-b border-border shadow-sm">
+    <div className="sticky top-0 z-50 w-full flex items-center justify-between px-6 py-2 bg-navbar border-border shadow-sm">
       <div className="flex gap-3 items-center">
         <img
           src="/sitehaus-logo.png"
