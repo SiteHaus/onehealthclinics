@@ -12,8 +12,6 @@ import {
   CardTitle,
 } from "@/components/ui/card";
 import { Bolt } from "lucide-react";
-import { House } from "lucide-react";
-import { Clock } from "lucide-react";
 export default function Home() {
   const router = useRouter();
   return (

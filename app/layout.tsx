@@ -18,6 +18,7 @@ const mainLinks: NavbarLinkType[] = [
   { name: "Home", target: "/" },
   { name: "About Us", target: "/about" },
   { name: "Shop", target: "/shop" },
+  { name: "Pediatrics", target: "/pediatrics" },
   { name: "Services", target: "/services" },
   { name: "Contact", target: "/contact" },
 ];
