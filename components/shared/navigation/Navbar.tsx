@@ -18,7 +18,7 @@ export const Navbar = ({ links }: NavbarProps) => {
         />
         <div className="flex flex-col">
           <span className="text-md lg:text-2xl text-background">
-            ONE HEALTH CLINICS
+            ONEHEALTH CLINICS
           </span>
           <span className="flex text-xs items-center gap-2 text-secondary">
             <MapPin />
