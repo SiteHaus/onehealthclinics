@@ -51,6 +51,8 @@ Jacob is passionate about providing preventive and holistic care to patients and
       "MPAS, PA-C (Master of Physician Assistant Studies, Board Certified Physician Assistant)",
     bio: `Noah Yoshida was born and raised in Omaha, Nebraska. He received a Bachelor of Science degree in biophysics from Creighton University. After graduating, he was a member of the clinical research team at the University of Nebraska Medical Center and worked in the oncology, hematology, and infectious disease departments. It was at this job that he discovered his passion for patient care and pursued a career as a physician assistant. He received his Master of Physician Assistant Studies degree in 2024 from the University of Nebraska Medical Center. His favorite clinical rotations were dermatology, plastic surgery, oncology, and cardiology. Noah moved with his wife to Saint George in 2023 to support her medical school journey at Rocky Vista University College of Osteopathic Medicine. Aside from helping his wife study for exams, Noah enjoys spending too much time at the gym, exploring the outdoors, discovering new recipes to cook, and salsa dancing. Noah, his wife and their son love hiking around Saint George.`,
     image: "/yoshida.png",
+    imageFilter:
+      "hue-rotate(340deg) saturate(117%) brightness(109%) contrast(110%)",
   },
 ];
 
@@ -128,6 +130,7 @@ export default function AboutPage() {
                       src={provider.image}
                       alt={provider.name}
                       className="w-full h-full object-cover object-top"
+                      style={provider.imageFilter ? { filter: provider.imageFilter } : undefined}
                     />
                   </div>
                   <div
