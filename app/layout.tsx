@@ -1,12 +1,13 @@
 import type { Metadata } from "next";
-import { Open_Sans } from "next/font/google";
+import { Funnel_Display } from "next/font/google";
 import "./globals.css";
 import { Navbar } from "@/components/shared/navigation/Navbar";
 import { NavbarLinkType } from "@/components/shared/navigation/NavbarLink";
 import { Footer } from "@/components/shared/footer";
-const open_sans = Open_Sans({
+const open_sans = Funnel_Display({
   subsets: ["latin"],
   weight: "400",
+  variable: "--font-geist-sans", // maps to what your globals.css expects
 });
 
 export const metadata: Metadata = {
@@ -29,7 +30,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
+    <html lang="en" className={open_sans.variable}>
       <body className={`${open_sans.className} antialiased`}>
         <Navbar links={mainLinks} />
         {children}

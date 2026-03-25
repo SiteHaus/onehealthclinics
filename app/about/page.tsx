@@ -60,9 +60,9 @@ export default function AboutPage() {
   return (
     <div className="w-full text-white">
       {/* Hero Section */}
-      <section className="bg-muted py-20 px-6">
+      <section className="bg-hero-bg py-20 px-6">
         <div className="max-w-5xl mx-auto">
-          <p className="text-subtext font-semibold uppercase tracking-widest text-sm mb-3">
+          <p className="text-secondary font-semibold uppercase tracking-widest text-sm mb-3">
             Who We Are
           </p>
           <h1 className="text-4xl md:text-5xl font-bold text-background mb-6">

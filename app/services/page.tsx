@@ -200,9 +200,9 @@ export default function ServicesPage() {
   return (
     <div className="w-full text-white">
       {/* ── Hero ── */}
-      <section className="bg-muted py-20 px-6">
+      <section className="bg-hero-bg py-20 px-6">
         <div className="max-w-5xl mx-auto">
-          <p className="text-subtext font-semibold uppercase tracking-widest text-sm mb-3">
+          <p className="text-secondary font-semibold uppercase tracking-widest text-sm mb-3">
             What We Offer
           </p>
           <h1 className="text-4xl md:text-5xl font-bold text-background mb-6">
@@ -217,7 +217,7 @@ export default function ServicesPage() {
       </section>
 
       {/* ── Quick Nav ── */}
-      <section className="bg-white border-b border-gray-100 px-6 py-6 sticky top-0 z-10 shadow-sm">
+      <section className="bg-white border-b border-gray-100 px-6 py-6 top-0 z-20 shadow-sm">
         <div className="max-w-5xl mx-auto flex flex-wrap gap-3">
           {[
             { label: "Primary Care", href: "#primary-care" },
