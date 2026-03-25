@@ -1,7 +1,6 @@
+import { NavbarDropdown } from "./NavbarDropdown";
 import { NavbarLinkType } from "./NavbarLink";
 import { NavbarLinkList } from "./NavbarLinkList";
-import { MapPin } from "lucide-react";
-import { NavbarDropdown } from "./NavbarDropdown";
 
 interface NavbarProps {
   links: NavbarLinkType[];
@@ -9,28 +8,30 @@ interface NavbarProps {
 
 export const Navbar = ({ links }: NavbarProps) => {
   return (
-    <div className="bg-navbar sticky top-0 z-50 w-full flex items-center justify-between px-6 py-2 border-border shadow-sm">
-      <div className="flex gap-3 items-center">
-        <img
-          src="/sitehaus-logo.png"
-          alt="Sitehaus Logo"
-          className="h-[3.75rem] w-auto rounded-lg"
-        />
-        <div className="flex flex-col">
-          <span className="text-md lg:text-2xl text-background">
-            ONEHEALTH CLINICS
-          </span>
-          <span className="flex text-xs items-center gap-2 text-secondary">
+    <div className="bg-navbar sticky top-0 z-50 shadow-sm">
+      <div className="w-full flex items-center justify-between px-6 py-2 max-w-7xl mx-auto">
+        <div className="flex gap-3 items-center">
+          <img
+            src="/sitehaus-logo.png"
+            alt="Sitehaus Logo"
+            className="h-12 w-auto rounded-lg"
+          />
+          <div className="flex flex-col">
+            <span className="text-md lg:text-2xl text-background">
+              ONEHEALTH CLINICS
+            </span>
+            {/* <span className="flex text-xs items-center gap-2 text-secondary">
             <MapPin />
             ST. GEORGE, UT
-          </span>
+            </span> */}
+          </div>
         </div>
-      </div>
-      <div className="hidden sm:block">
-        <NavbarLinkList links={links} />
-      </div>
-      <div className="sm:hidden">
-        <NavbarDropdown links={links} />
+        <div className="hidden sm:block">
+          <NavbarLinkList links={links} />
+        </div>
+        <div className="sm:hidden">
+          <NavbarDropdown links={links} />
+        </div>
       </div>
     </div>
   );

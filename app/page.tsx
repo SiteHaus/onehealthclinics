@@ -10,33 +10,42 @@ export default function Home() {
   return (
     <>
       {/* Hero Section */}
-      <section className="relative flex h-[calc(100vh-80px)] bg-[url('/office.jpg')] bg-cover bg-center">
-        {/* Dark overlay */}
+      <section className="relative flex h-[70vh] min-h-[480px] bg-[url('/office.jpg')] bg-cover bg-center">
         <div className="absolute inset-0 bg-black/40"></div>
 
-        <div className="relative w-full lg:w-1/2 bg-gradient-to-r from-black/60 via-black/40 to-transparent">
-          <div className="flex items-center h-full justify-center px-6">
-            <div className="flex flex-col text-background max-w-xl">
-              <span className="text-4xl md:text-5xl lg:text-6xl font-semibold">
-                Care you
-              </span>
+        <div className="relative w-full bg-linear-to-r from-black/40 via-black/20 to-transparent">
+          <div className="flex items-center h-full px-6">
+            <div className="flex flex-col text-background w-full max-w-7xl mx-auto">
+              <h1 className="text-4xl md:text-5xl lg:text-6xl font-semibold leading-tight">
+                Care you <span className="text-subtext">can count on</span>
+              </h1>
 
-              <span className="text-4xl md:text-5xl lg:text-6xl font-semibold text-subtext">
-                Can count on
-              </span>
-
-              <p className="mt-6 text-base md:text-lg">
-                From same-day sick visits to long-term wellness plans, One
-                Health provides warm, personalized healthcare for every member
-                of your family — right here in Southern Utah.
+              <p className="mt-5 text-base md:text-lg text-white/85">
+                From same-day sick visits to long-term wellness plans, OneHealth
+                provides warm, personalized healthcare for every member of your
+                family — right here in Southern Utah.
               </p>
 
-              <Button
-                onClick={() => router.push("/contact")}
-                className="w-fit mt-6 px-6 py-4 rounded-xl"
-              >
-                Book with Us
-              </Button>
+              <div className="flex flex-wrap gap-3 mt-7">
+                <Button
+                  onClick={() => router.push("/contact")}
+                  className="w-fit px-8 py-5 text-base rounded-xl"
+                >
+                  Book an Appointment
+                </Button>
+                <Button
+                  variant="outline"
+                  className="w-fit px-8 py-5 text-base rounded-xl bg-white/10 border-white/30 text-white hover:bg-white/20 hover:text-white"
+                  onClick={() =>
+                    window.open(
+                      "https://mycw18.eclinicalweb.com/portal1225/jsp/100mp/login_otp.jsp",
+                      "_blank",
+                    )
+                  }
+                >
+                  Patient Portal
+                </Button>
+              </div>
             </div>
           </div>
         </div>
@@ -44,41 +53,33 @@ export default function Home() {
       {/* Section BELOW hero */}
       <section>
         <Banner
-          className="text-md lg:text-lg bg-primary text-secondary text-center"
-          content={"- Dixie Primary Care is now One Health! -"}
+          className="text-sm lg:text-base bg-muted text-primary font-medium text-center py-3"
+          content="Dixie Primary Care is now OneHealth Clinics — same trusted team, expanded care."
         />
       </section>
       <div className="bg-white ">
-        <section className="bg-cover bg-center bg-no-repeat w-full py-24 ">
-          <div className="flex flex-col lg:flex-row max-w-6xl mx-auto gap-12 px-6">
-            <div className="w-full lg:w-1/2">
-              <h2 className="text-sm font-semibold text-primary">
-                EST. 2006 | ST GEORGE, UTAH
-              </h2>
-
-              <h1 className="font-bold mt-4 text-4xl md:text-5xl lg:text-6xl">
-                An Evolution of Care, Two Decades in the Making
-              </h1>
-            </div>
-
-            <div className="w-full lg:w-1/2 text-muted-foreground font-semibold text-lg text-center md:text-xl">
-              <p className="pb-10">
+        <section className="w-full py-24">
+          <div className="flex flex-col max-w-6xl mx-auto gap-6 px-6">
+            <p className="text-sm font-semibold text-primary uppercase tracking-widest">
+              Est. 2006 · St. George, Utah
+            </p>
+            <h2 className="font-bold text-4xl md:text-5xl lg:text-6xl">
+              An Evolution of Care, Two Decades in the Making
+            </h2>
+            <div className="flex flex-col lg:flex-row gap-8 mt-2 text-muted-foreground text-lg">
+              <p>
                 Since 2006, our mission has been to provide a unique blend of
                 internal medicine and personalized attention. For 20 years,
                 we've had the privilege of being your medical home as Dixie
-                Primary Care.
-              </p>
-
-              <p>
-                As our community grew, so did our scope. We've evolved far
-                beyond a traditional primary care office — managing complex
-                chronic conditions, performing specialized procedures, and
-                offering wellness care for every stage of life.
+                Primary Care. As our community grew, so did our scope. We've
+                evolved far beyond a traditional primary care office — managing
+                complex chronic conditions, performing specialized procedures,
+                and offering wellness care for every stage of life.
               </p>
             </div>
           </div>
         </section>
-        <section className="bg-cover bg-center bg-no-repeat w-full py-5 lg:py-10">
+        <section className="bg-gray-50 w-full py-24">
           <div className="flex flex-col max-w-6xl mx-auto gap-12 px-6">
             {/* Title */}
             <div className="w-full text-center">
@@ -92,8 +93,8 @@ export default function Home() {
             </div>
 
             {/* Cards */}
-            <div className="flex flex-col md:flex-row justify-center items-center lg:items-stretch gap-10 mt-12">
-              <Card className="w-[280px] bg-[#D9D9D9] h-full flex flex-col bg-white rounded-lg border border-border shadow-lg hover:shadow-xl hover:-translate-y-1 transition-all duration-300">
+            <div className="flex flex-col md:flex-row justify-center items-center lg:items-stretch gap-8">
+              <Card className="flex-1 flex flex-col bg-white rounded-xl border border-gray-100 shadow-sm hover:shadow-md hover:-translate-y-1 transition-all duration-300">
                 <CardHeader className="flex flex-col gap-4">
                   <div className="w-12 h-12 rounded-full bg-primary/10 flex items-center justify-center">
                     <Bolt className="text-primary" />
@@ -110,7 +111,7 @@ export default function Home() {
                   </p>
                 </CardContent>
               </Card>
-              <Card className="w-[280px] bg-[#D9D9D9] h-full flex flex-col bg-white rounded-lg border border-border shadow-lg hover:shadow-xl hover:-translate-y-1 transition-all duration-300">
+              <Card className="flex-1 flex flex-col bg-white rounded-xl border border-gray-100 shadow-sm hover:shadow-md hover:-translate-y-1 transition-all duration-300">
                 <CardHeader className="flex flex-col gap-4">
                   <div className="w-12 h-12 rounded-full bg-primary/10 flex items-center justify-center">
                     <Bolt className="text-primary" />
@@ -127,7 +128,7 @@ export default function Home() {
                   </p>
                 </CardContent>
               </Card>
-              <Card className="w-[280px] bg-[#D9D9D9] h-full flex flex-col bg-white rounded-lg border border-border shadow-lg hover:shadow-xl hover:-translate-y-1 transition-all duration-300">
+              <Card className="flex-1 flex flex-col bg-white rounded-xl border border-gray-100 shadow-sm hover:shadow-md hover:-translate-y-1 transition-all duration-300">
                 <CardHeader className="flex flex-col gap-4">
                   <div className="w-12 h-12 rounded-full bg-primary/10 flex items-center justify-center">
                     <Bolt className="text-primary" />
