@@ -1,17 +1,10 @@
 "use client";
 
-import { Button } from "@/components/ui/button";
 import { Banner } from "@/components/shared/banner";
-import { useRouter } from "next/navigation";
-import {
-  Card,
-  CardContent,
-  CardDescription,
-  CardHeader,
-  CardFooter,
-  CardTitle,
-} from "@/components/ui/card";
+import { Button } from "@/components/ui/button";
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Bolt } from "lucide-react";
+import { useRouter } from "next/navigation";
 export default function Home() {
   const router = useRouter();
   return (
