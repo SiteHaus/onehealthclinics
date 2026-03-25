@@ -9,7 +9,7 @@ interface NavbarProps {
 
 export const Navbar = ({ links }: NavbarProps) => {
   return (
-    <div className="sticky top-0 z-50 w-full flex items-center justify-between px-6 py-2 bg-navbar border-border shadow-sm">
+    <div className="bg-navbar sticky top-0 z-50 w-full flex items-center justify-between px-6 py-2 border-border shadow-sm">
       <div className="flex gap-3 items-center">
         <img
           src="/sitehaus-logo.png"
@@ -18,7 +18,7 @@ export const Navbar = ({ links }: NavbarProps) => {
         />
         <div className="flex flex-col">
           <span className="text-md lg:text-2xl text-background">
-            ONE HEALTH CLINICS
+            ONEHEALTH CLINICS
           </span>
           <span className="flex text-xs items-center gap-2 text-secondary">
             <MapPin />

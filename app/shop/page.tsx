@@ -420,10 +420,10 @@ export default function ShopPage() {
       />
 
       {/* ── Hero ── */}
-      <section className="bg-muted py-20 px-6">
+      <section className="bg-hero-bg py-20 px-6">
         <div className="max-w-5xl mx-auto flex items-start justify-between gap-6">
           <div>
-            <p className="text-subtext font-semibold uppercase tracking-widest text-sm mb-3">
+            <p className="text-secondary font-semibold uppercase tracking-widest text-sm mb-3">
               Provider-Curated
             </p>
             <h1 className="text-4xl md:text-5xl font-bold text-background mb-6">
@@ -452,7 +452,7 @@ export default function ShopPage() {
       </section>
 
       {/* ── Filters + Sort Bar ── */}
-      <section className="bg-white border-b border-gray-100 px-6 py-5 sticky top-0 z-10 shadow-sm">
+      <section className="bg-white border-b border-gray-100 px-6 py-5 sticky top-0 z-30 shadow-sm">
         <div className="max-w-5xl mx-auto flex flex-col sm:flex-row sm:items-center gap-4 justify-between">
           {/* Category pills */}
           <div className="flex flex-wrap gap-2">
@@ -472,7 +472,7 @@ export default function ShopPage() {
           </div>
 
           {/* Sort dropdown */}
-          <div className="relative flex-shrink-0">
+          <div className="relative flex-shrink-0 z-40">
             <button
               onClick={() => setSortOpen((o) => !o)}
               className="flex items-center gap-2 text-xs font-semibold uppercase tracking-widest text-gray-500 hover:text-gray-800 transition-colors border border-gray-200 rounded-lg px-3 py-2"
@@ -508,8 +508,20 @@ export default function ShopPage() {
       </section>
 
       {/* ── Product Grid ── */}
-      <section className="bg-gray-50 py-16 px-6">
-        <div className="max-w-5xl mx-auto">
+      <section className="relative bg-gray-50 py-16 px-6 overflow-hidden">
+        {/* Background SVG */}
+        <div
+          className="absolute inset-0 pointer-events-none opacity-40"
+          style={{
+            backgroundImage: "url('/onehealthsubtlebackground.svg')",
+            backgroundRepeat: "no-repeat",
+            backgroundPosition: "center",
+            backgroundSize: "cover",
+          }}
+        />
+
+        {/* Content */}
+        <div className="max-w-5xl mx-auto relative z-10">
           {/* Result count */}
           <p className="text-xs font-semibold uppercase tracking-widest text-gray-400 mb-8">
             {filtered.length} product{filtered.length !== 1 ? "s" : ""}
@@ -572,15 +584,15 @@ export default function ShopPage() {
       </section>
 
       {/* ── Contact CTA ── */}
-      <section className="bg-muted py-20 px-6">
+      <section className="bg-bac py-20 px-6">
         <div className="max-w-5xl mx-auto grid md:grid-cols-2 gap-16 items-start">
           <div className="flex flex-col gap-6">
             <div>
               <div className="w-10 h-1 bg-subtext rounded-full mb-4" />
-              <h2 className="text-2xl font-bold text-background mb-2">
+              <h2 className="text-2xl font-bold text-foreground mb-2">
                 Not Sure What to Take?
               </h2>
-              <p className="text-white/80 leading-relaxed">
+              <p className="text-foreground/80 leading-relaxed">
                 Our providers can help you find the right supplements based on
                 your health history and goals. Reach out and we'll guide you.
               </p>
