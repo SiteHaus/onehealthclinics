@@ -2,10 +2,10 @@ import { Footer } from "@/components/shared/footer";
 import { Navbar } from "@/components/shared/navigation/Navbar";
 import { NavbarLinkType } from "@/components/shared/navigation/NavbarLink";
 import type { Metadata } from "next";
-import { Open_Sans } from "next/font/google";
+import { Funnel_Display } from "next/font/google";
 import "./globals.css";
 
-const open_sans = Open_Sans({
+const funnel_display = Funnel_Display({
   subsets: ["latin"],
   weight: "400",
 });
@@ -134,7 +134,7 @@ export default function RootLayout({
           dangerouslySetInnerHTML={{ __html: localBusinessSchema }}
         />
       </head>
-      <body className={`${open_sans.className} antialiased`}>
+      <body className={`${funnel_display.className} antialiased`}>
         <Navbar links={mainLinks} />
         {children}
         <Footer />
