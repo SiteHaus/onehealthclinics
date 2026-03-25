@@ -8,6 +8,7 @@ import "./globals.css";
 const funnel_display = Funnel_Display({
   subsets: ["latin"],
   weight: "400",
+  variable: "--font-geist-sans", // maps to what your globals.css expects
 });
 
 const siteUrl = "https://onehealthclinics.com";

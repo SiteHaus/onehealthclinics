@@ -11,7 +11,7 @@ export const Footer = () => {
       <div className="max-w-6xl mx-auto px-6 flex flex-col md:flex-row justify-between gap-8">
         {/* Left Section */}
         <div className="flex flex-col space-y-2">
-          <h2 className="text-xl font-bold text-subtext">
+          <h2 className="text-xl font-bold text-secondary">
             READY TO GET STARTED?
           </h2>
           <div>
@@ -66,7 +66,7 @@ export const Footer = () => {
 
         <div className="flex gap-10">
           <a
-            href="https://www.instagram.com/yourprofile"
+            href="https://www.instagram.com/onehealth_southernutah/?hl=en"
             target="_blank"
             rel="noopener noreferrer"
           >
