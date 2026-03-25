@@ -4,7 +4,7 @@ import "./globals.css";
 import { Navbar } from "@/components/shared/navigation/Navbar";
 import { NavbarLinkType } from "@/components/shared/navigation/NavbarLink";
 import { Footer } from "@/components/shared/footer";
-const open_sans = Funnel_Display({
+const funnel_display = Funnel_Display({
   subsets: ["latin"],
   weight: "400",
   variable: "--font-geist-sans", // maps to what your globals.css expects
@@ -30,8 +30,8 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" className={open_sans.variable}>
-      <body className={`${open_sans.className} antialiased`}>
+    <html lang="en" className={funnel_display.variable}>
+      <body className={`${funnel_display.className} antialiased`}>
         <Navbar links={mainLinks} />
         {children}
         <Footer />
