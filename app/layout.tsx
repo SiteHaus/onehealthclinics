@@ -4,6 +4,7 @@ import { NavbarLinkType } from "@/components/shared/navigation/NavbarLink";
 import type { Metadata } from "next";
 import { Funnel_Display } from "next/font/google";
 import "./globals.css";
+
 const funnel_display = Funnel_Display({
   subsets: ["latin"],
   weight: "400",
