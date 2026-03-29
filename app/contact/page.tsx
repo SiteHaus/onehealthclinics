@@ -53,6 +53,9 @@ export default function ContactPage() {
                   Hours
                 </p>
                 <p className="text-gray-700">Monday – Friday: 8am – 5pm</p>
+                <p className="text-gray-700">
+                  Thursday: Closed between 12pm - 1:15pm
+                </p>
                 <p className="text-gray-500 text-sm">
                   Same-day appointments available
                 </p>
