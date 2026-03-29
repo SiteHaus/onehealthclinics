@@ -1,9 +1,9 @@
 "use client";
 
 import { Check } from "lucide-react";
-import { Button } from "../ui/button";
 import { useRouter } from "next/navigation";
-import { FaInstagram, FaFacebookF, FaTwitter } from "react-icons/fa";
+import { FaFacebookF, FaInstagram, FaTwitter } from "react-icons/fa";
+import { Button } from "../ui/button";
 export const Footer = () => {
   const router = useRouter();
   return (
@@ -24,16 +24,16 @@ export const Footer = () => {
             </p>
 
             <div className="flex flex-wrap gap-4 mt-5">
-              <div className="flex items-center gap-2 w-48">
-                <Check className="text-subtext" />
+              <div className="flex items-center gap-2 whitespace-nowrap">
+                <Check className="text-muted shrink-0" />
                 <span>Same-day availability</span>
               </div>
-              <div className="flex items-center gap-2 w-48">
-                <Check className="text-subtext" />
+              <div className="flex items-center gap-2 whitespace-nowrap">
+                <Check className="text-muted shrink-0" />
                 <span>New patients welcome</span>
               </div>
-              <div className="flex items-center gap-2 w-48">
-                <Check className="text-subtext" />
+              <div className="flex items-center gap-2 whitespace-nowrap">
+                <Check className="text-muted shrink-0" />
                 <span>Most insurance accepted</span>
               </div>
             </div>
