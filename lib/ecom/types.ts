@@ -107,8 +107,8 @@ export type CheckoutIntentResponse = {
 };
 
 export type CheckoutIntentRequest = {
-  email: string;
-  address: {
+  email?: string;
+  address?: {
     name: string;
     line1: string;
     line2?: string;
