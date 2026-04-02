@@ -4,8 +4,10 @@ import { Check } from "lucide-react";
 import { useRouter } from "next/navigation";
 import { FaFacebookF, FaInstagram, FaTwitter } from "react-icons/fa";
 import { Button } from "../ui/button";
+
 export const Footer = () => {
   const router = useRouter();
+
   return (
     <footer className="w-full bg-primary text-white py-12">
       <div className="max-w-6xl mx-auto px-6 flex flex-col md:flex-row justify-between gap-8">

@@ -1,5 +1,4 @@
-import { NavbarLinkType } from "./NavbarLink";
-import { NavbarLink } from "./NavbarLink";
+import { NavbarLink, NavbarLinkType } from "./NavbarLink";
 import { NavbarSearch } from "./NavbarSearch";
 
 export const NavbarLinkList = ({ links }: { links: NavbarLinkType[] }) => {
