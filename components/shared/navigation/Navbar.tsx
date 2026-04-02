@@ -21,10 +21,6 @@ export const Navbar = ({ links }: NavbarProps) => {
             <span className="text-md lg:text-2xl text-background">
               ONEHEALTH CLINICS
             </span>
-            {/* <span className="flex text-xs items-center gap-2 text-secondary">
-            <MapPin />
-            ST. GEORGE, UT
-            </span> */}
           </div>
         </Link>
         <div className="hidden sm:block">
