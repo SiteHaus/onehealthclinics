@@ -1,6 +1,8 @@
 import { getProducts } from "@/lib/ecom/client";
 import ShopClient from "./ShopClient";
 
+export const dynamic = "force-dynamic";
+
 export const metadata = {
   title: "Supplement Shop | OneHealth Clinics",
   description:
