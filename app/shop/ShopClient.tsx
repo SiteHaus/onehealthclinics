@@ -379,7 +379,7 @@ export default function ShopClient({ products }: { products: Product[] }) {
       </section>
 
       {/* ── Sort Bar ── */}
-      <section className="bg-white border-b border-gray-100 px-6 py-5 sticky top-0 z-30 shadow-sm">
+      <section className="bg-white border-b border-gray-100 px-6 py-5 sticky top-16 z-30 shadow-sm">
         <div className="max-w-5xl mx-auto flex items-center justify-between">
           <p className="text-xs font-semibold uppercase tracking-widest text-gray-400">
             {products.length} product{products.length !== 1 ? "s" : ""}
