@@ -1,6 +1,13 @@
 "use client";
 
+import { submitContactForm, type ContactFormState } from "./actions";
+import { useActionState } from "react";
+
+const initialState: ContactFormState = { status: "idle" };
+
 export default function ContactPage() {
+  const [state, action, pending] = useActionState(submitContactForm, initialState);
+
   return (
     <div className="w-full text-white">
       {/* Hero Section */}
@@ -70,56 +77,80 @@ export default function ContactPage() {
               <h2 className="text-2xl font-bold mb-6">Send Us a Message</h2>
             </div>
 
-            <div className="flex flex-col gap-4">
-              <div className="grid grid-cols-2 gap-4">
+            {state.status === "success" ? (
+              <div className="flex flex-col gap-3 py-8 text-center">
+                <p className="text-lg font-semibold text-gray-800">Message sent!</p>
+                <p className="text-gray-500 text-sm">
+                  We'll get back to you as soon as we can.
+                </p>
+              </div>
+            ) : (
+              <form action={action} className="flex flex-col gap-4">
+                <div className="grid grid-cols-2 gap-4">
+                  <div className="flex flex-col gap-1">
+                    <label className="text-sm font-medium text-gray-600">
+                      First Name
+                    </label>
+                    <input
+                      name="firstName"
+                      type="text"
+                      placeholder="Jane"
+                      required
+                      className="border border-gray-200 rounded-lg px-4 py-3 text-gray-800 focus:outline-none focus:ring-2 focus:ring-primary"
+                    />
+                  </div>
+                  <div className="flex flex-col gap-1">
+                    <label className="text-sm font-medium text-gray-600">
+                      Last Name
+                    </label>
+                    <input
+                      name="lastName"
+                      type="text"
+                      placeholder="Doe"
+                      className="border border-gray-200 rounded-lg px-4 py-3 text-gray-800 focus:outline-none focus:ring-2 focus:ring-primary"
+                    />
+                  </div>
+                </div>
+
                 <div className="flex flex-col gap-1">
                   <label className="text-sm font-medium text-gray-600">
-                    First Name
+                    Email
                   </label>
                   <input
-                    type="text"
-                    placeholder="Jane"
+                    name="email"
+                    type="email"
+                    placeholder="jane@example.com"
+                    required
                     className="border border-gray-200 rounded-lg px-4 py-3 text-gray-800 focus:outline-none focus:ring-2 focus:ring-primary"
                   />
                 </div>
+
                 <div className="flex flex-col gap-1">
                   <label className="text-sm font-medium text-gray-600">
-                    Last Name
+                    Message
                   </label>
-                  <input
-                    type="text"
-                    placeholder="Doe"
-                    className="border border-gray-200 rounded-lg px-4 py-3 text-gray-800 focus:outline-none focus:ring-2 focus:ring-primary"
+                  <textarea
+                    name="message"
+                    rows={5}
+                    placeholder="How can we help you?"
+                    required
+                    className="border border-gray-200 rounded-lg px-4 py-3 text-gray-800 focus:outline-none focus:ring-2 focus:ring-primary resize-none"
                   />
                 </div>
-              </div>
 
-              <div className="flex flex-col gap-1">
-                <label className="text-sm font-medium text-gray-600">
-                  Email
-                </label>
-                <input
-                  type="email"
-                  placeholder="jane@example.com"
-                  className="border border-gray-200 rounded-lg px-4 py-3 text-gray-800 focus:outline-none focus:ring-2 focus:ring-primary"
-                />
-              </div>
+                {state.status === "error" && (
+                  <p className="text-sm text-red-500">{state.message}</p>
+                )}
 
-              <div className="flex flex-col gap-1">
-                <label className="text-sm font-medium text-gray-600">
-                  Message
-                </label>
-                <textarea
-                  rows={5}
-                  placeholder="How can we help you?"
-                  className="border border-gray-200 rounded-lg px-4 py-3 text-gray-800 focus:outline-none focus:ring-2 focus:ring-primary resize-none"
-                />
-              </div>
-
-              <button className="bg-primary text-white font-semibold py-3 px-6 rounded-lg hover:opacity-90 transition-opacity">
-                Send Message
-              </button>
-            </div>
+                <button
+                  type="submit"
+                  disabled={pending}
+                  className="bg-primary text-white font-semibold py-3 px-6 rounded-lg hover:opacity-90 transition-opacity disabled:opacity-60"
+                >
+                  {pending ? "Sending…" : "Send Message"}
+                </button>
+              </form>
+            )}
           </div>
         </div>
       </section>

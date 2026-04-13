@@ -217,7 +217,7 @@ export default function ServicesPage() {
       </section>
 
       {/* ── Quick Nav ── */}
-      <section className="bg-white border-b border-gray-100 px-6 py-6 top-0 z-20 shadow-sm">
+      <section className="bg-white border-b border-gray-100 px-6 py-6 sticky top-16 z-20 shadow-sm">
         <div className="max-w-5xl mx-auto flex flex-wrap gap-3">
           {[
             { label: "Primary Care", href: "#primary-care" },
