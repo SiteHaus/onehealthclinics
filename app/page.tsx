@@ -88,7 +88,7 @@ export default function Home() {
               </h2>
 
               <h1 className="font-bold mt-4 text-4xl md:text-5xl lg:text-6xl">
-                Why One Health?
+                Why OneHealth?
               </h1>
             </div>
 

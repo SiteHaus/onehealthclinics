@@ -39,7 +39,7 @@ Adam enjoys serving his community and getting to know people individually. Adam 
     image: "/dye.png",
   },
   {
-    name: "Jake Ewell, DNP-FNP",
+    name: "Jacob Ewell, DNP-FNP",
     title: "Doctor of Nursing Practice, Certified Family Nurse Practitioner",
     bio: `Jacob Ewell grew up in Southern California. He received his bachelor’s in nursing at Brigham Young University-Idaho and worked as a registered nurse in the Neurological Critical Care Unit at the University of Utah hospital for five years. While working as an ICU nurse, he attended Weber State University where he graduated with his doctorate of nursing practice with an emphasis in family practice.
 Jacob is passionate about providing preventive and holistic care to patients and their families. He and his wife enjoy traveling and spending time outdoors with their son. Other hobbies of Jacob’s include running, hiking, mountain biking, and dirt biking.`,
@@ -68,7 +68,7 @@ export default function AboutPage() {
             Who We Are
           </p>
           <h1 className="text-4xl md:text-5xl font-bold text-background mb-6">
-            About One Health
+            About OneHealth
           </h1>
           <p className="max-w-2xl text-white/80 text-lg leading-relaxed">
             We believe everyone deserves accessible, high-quality healthcare —
@@ -130,7 +130,11 @@ export default function AboutPage() {
                       src={provider.image}
                       alt={provider.name}
                       className="w-full h-full object-cover object-top"
-                      style={provider.imageFilter ? { filter: provider.imageFilter } : undefined}
+                      style={
+                        provider.imageFilter
+                          ? { filter: provider.imageFilter }
+                          : undefined
+                      }
                     />
                   </div>
                   <div

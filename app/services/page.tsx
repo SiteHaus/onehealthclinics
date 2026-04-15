@@ -275,7 +275,7 @@ export default function ServicesPage() {
           </h2>
           <p className="text-white/80 text-sm max-w-xl">
             Advanced treatments and wellness programs that go beyond standard
-            primary care — available right here at One Health Clinic.
+            primary care — available right here at OneHealth Clinic.
           </p>
         </div>
       </section>
