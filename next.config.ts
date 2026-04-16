@@ -5,9 +5,14 @@ const nextConfig: NextConfig = {
   images: {
     remotePatterns: [
       {
-        // Sitehaus R2 CDN — product images
+        // Sitehaus R2 CDN — product images (staging)
         protocol: "https",
-        hostname: "pub-e3a41d59838143ca8205596b891ba184.r2.dev",
+        hostname: "cdn.staging.commerce.sitehaus.dev",
+      },
+      {
+        // Sitehaus R2 CDN — product images (production)
+        protocol: "https",
+        hostname: "cdn.commerce.sitehaus.dev",
       },
       {
         // Legacy OneHealth WordPress images
