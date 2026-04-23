@@ -124,7 +124,7 @@ export default function AboutPage() {
                     isEven ? "" : "md:flex-row-reverse"
                   } items-center gap-10`}
                 >
-                  <div className="w-full md:w-2/5 shrink-0 h-[300px] md:h-[500px]">
+                  <div className="w-full md:w-2/5 shrink-0 h-[450px] md:h-[500px]">
                     {" "}
                     <img
                       src={provider.image}

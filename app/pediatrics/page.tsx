@@ -12,79 +12,79 @@ import {
 const developmentHandouts = [
   {
     label: "Newborn",
-    href: "https://onehealthclinics.com/wp-content/uploads/2025/11/Newborn-Handout.pdf",
+    href: "/3-5.pdf",
   },
   {
     label: "1 Month",
-    href: "https://onehealthclinics.com/wp-content/uploads/2025/11/1-month-Handout.pdf",
+    href: "/1m.pdf",
   },
   {
     label: "2 Month",
-    href: "https://onehealthclinics.com/wp-content/uploads/2025/11/2-month-Handout.pdf",
+    href: "/2m.pdf",
   },
   {
     label: "4 Month",
-    href: "https://onehealthclinics.com/wp-content/uploads/2025/11/4-month-Handout.pdf",
+    href: "/4m.pdf",
   },
   {
     label: "6 Month",
-    href: "https://onehealthclinics.com/wp-content/uploads/2025/11/6-month-Handout.pdf",
+    href: "/6m.pdf",
   },
   {
     label: "9 Month",
-    href: "https://onehealthclinics.com/wp-content/uploads/2025/11/9-month-Handout.pdf",
+    href: "/9m.pdf",
   },
   {
     label: "12 Month",
-    href: "https://onehealthclinics.com/wp-content/uploads/2025/11/12-month-Handout.pdf",
+    href: "/12m.pdf",
   },
   {
     label: "15 Month",
-    href: "https://onehealthclinics.com/wp-content/uploads/2025/11/15-month-Handout.pdf",
+    href: "/15m.pdf",
   },
   {
     label: "18 Month",
-    href: "https://onehealthclinics.com/wp-content/uploads/2025/11/18-month-Handout.pdf",
+    href: "/18m.pdf",
   },
   {
     label: "24 Month",
-    href: "https://onehealthclinics.com/wp-content/uploads/2025/11/24-month-Handout.pdf",
+    href: "/24m.pdf",
   },
   {
     label: "30 Month",
-    href: "https://onehealthclinics.com/wp-content/uploads/2025/11/30-month-Handout.pdf",
+    href: "/30m.pdf",
   },
   {
     label: "3 Year",
-    href: "https://onehealthclinics.com/wp-content/uploads/2025/11/3-year-Handout.pdf",
+    href: "/3y.pdf",
   },
   {
     label: "4 Year",
-    href: "https://onehealthclinics.com/wp-content/uploads/2025/11/4-year-Handout.pdf",
+    href: "/4y.pdf",
   },
   {
     label: "5–6 Year",
-    href: "https://onehealthclinics.com/wp-content/uploads/2025/11/5-6-year-Handout.pdf",
+    href: "/5-6y.pdf",
   },
   {
     label: "7–8 Year",
-    href: "https://onehealthclinics.com/wp-content/uploads/2025/11/7-8-year-Handout.pdf",
+    href: "/7-8y.pdf",
   },
   {
     label: "9–10 Year",
-    href: "https://onehealthclinics.com/wp-content/uploads/2025/11/9-10-year-Handout.pdf",
+    href: "/9-10.pdf",
   },
   {
     label: "11–14 Year",
-    href: "https://onehealthclinics.com/wp-content/uploads/2025/11/11-14-year-Handout.pdf",
+    href: "11-14.pdf",
   },
   {
     label: "15–17 Year",
-    href: "https://onehealthclinics.com/wp-content/uploads/2025/11/15-17-year-Handout.pdf",
+    href: "/15-17.pdf",
   },
   {
     label: "18–21 Year",
-    href: "https://onehealthclinics.com/wp-content/uploads/2025/11/18-21-year-Handout.pdf",
+    href: "/18-21.pdf",
   },
 ];
 
@@ -130,22 +130,22 @@ const services = [
 const mediaItems = [
   {
     type: "video",
-    src: "https://onehealthclinics.com/wp-content/uploads/2025/11/IMG_7614.mov",
+    src: "/videos/pediatrics.mov",
     caption: "A look inside our pediatrics clinic",
   },
   {
     type: "image",
-    src: "https://onehealthclinics.com/wp-content/uploads/2025/11/FullSizeRender2-scaled.jpg",
+    src: "/pedpoint.jpg",
     caption: "Our welcoming exam rooms",
   },
   {
     type: "image",
-    src: "https://onehealthclinics.com/wp-content/uploads/2025/11/FullSizeRender1-scaled.jpg",
+    src: "/gumball.jpg",
     caption: "Family-focused care",
   },
   {
     type: "image",
-    src: "https://onehealthclinics.com/wp-content/uploads/2025/11/IMG_7598-scaled-e1763420015443.jpg",
+    src: "/tada.jpg",
     caption: "A space kids feel comfortable in",
   },
 ];
@@ -198,7 +198,7 @@ export default function PediatricsPage() {
           </div>
           <div className="rounded-2xl overflow-hidden shadow-md bg-gray-100 aspect-[3/4] flex items-center justify-center">
             <img
-              src="https://onehealthclinics.com/wp-content/uploads/2025/07/drturner-3-scaled.png"
+              src="/turner.png"
               alt="Dr. Carl Turner"
               className="w-full h-full object-cover"
             />
@@ -255,7 +255,7 @@ export default function PediatricsPage() {
                   Required at 12 &amp; 24 months.
                 </p>
                 <a
-                  href="https://leadcoalition.utah.gov/wp-content/uploads/Lead-Exposure-Questionnaire-English.pdf"
+                  href="/childhood.pdf"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="text-primary font-medium text-sm hover:underline"
