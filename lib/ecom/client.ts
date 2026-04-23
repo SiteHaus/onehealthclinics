@@ -7,6 +7,7 @@ import type {
 } from "./types";
 
 const API_URL = process.env.NEXT_PUBLIC_ECOM_API_URL ?? "http://localhost:7020";
+const STORE_SLUG = process.env.NEXT_PUBLIC_STORE_SLUG ?? "onehealth";
 
 // ─── Core fetch wrapper ───────────────────────────────────────────────────────
 
@@ -18,6 +19,7 @@ async function ecomFetch<T>(
     ...init,
     headers: {
       "Content-Type": "application/json",
+      "x-store-slug": STORE_SLUG,
       ...init.headers,
     },
     credentials: "include",
