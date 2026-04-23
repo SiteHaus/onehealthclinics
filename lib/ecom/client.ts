@@ -6,8 +6,15 @@ import type {
   ProductList,
 } from "./types";
 
-const API_URL = process.env.NEXT_PUBLIC_ECOM_API_URL ?? "http://localhost:7020";
-const STORE_SLUG = process.env.NEXT_PUBLIC_STORE_SLUG ?? "onehealth";
+const API_URL = process.env.NEXT_PUBLIC_ECOM_API_URL;
+const STORE_SLUG = process.env.NEXT_PUBLIC_STORE_SLUG;
+
+if (!API_URL) {
+  throw new Error(
+    "NEXT_PUBLIC_ECOM_API_URL is not set. " +
+      "Add it to .env.local for local dev or to your Vercel project environment variables.",
+  );
+}
 
 // ─── Core fetch wrapper ───────────────────────────────────────────────────────
 
@@ -15,11 +22,11 @@ async function ecomFetch<T>(
   path: string,
   init: RequestInit = {},
 ): Promise<T> {
-  const res = await fetch(`${API_URL}${path}`, {
+  const res = await fetch(`${API_URL!}${path}`, {
     ...init,
     headers: {
       "Content-Type": "application/json",
-      "x-store-slug": STORE_SLUG,
+      ...(STORE_SLUG ? { "x-store-slug": STORE_SLUG } : {}),
       ...init.headers,
     },
     credentials: "include",

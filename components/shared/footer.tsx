@@ -63,7 +63,7 @@ export const Footer = () => {
       {/* Footer Bottom */}
       <div className="mt-8 flex flex-col items-center gap-4">
         <div className="text-secondary text-sm text-center">
-          &copy; {new Date().getFullYear()} One Health. All rights reserved.
+          &copy; {new Date().getFullYear()} OneHealth. All rights reserved.
         </div>
 
         <div className="flex gap-10">
