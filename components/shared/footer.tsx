@@ -51,12 +51,6 @@ export const Footer = () => {
           >
             Book an Appointment
           </Button>
-          <Button
-            variant="outline"
-            className="border-white text-primary hover:bg-white hover:text-primary w-fit px-6 py-4 rounded-xl"
-          >
-            Call Us
-          </Button>
         </div>
       </div>
 
@@ -89,6 +83,17 @@ export const Footer = () => {
             rel="noopener noreferrer"
           >
             <FaTwitter size={"25px"} />
+          </a>
+        </div>
+        <div className="text-white/30 text-xs">
+          Powered by{" "}
+          <a
+            href="https://sitehaus.dev"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="hover:text-white/60 transition-colors"
+          >
+            Sitehaus
           </a>
         </div>
       </div>
