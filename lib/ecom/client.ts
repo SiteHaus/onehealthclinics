@@ -3,18 +3,27 @@ import type {
   CheckoutIntentRequest,
   CheckoutIntentResponse,
   Order,
+  ProductDetail,
   ProductList,
 } from "./types";
 
-const API_URL = process.env.NEXT_PUBLIC_ECOM_API_URL;
+const DIRECT_API_URL = process.env.NEXT_PUBLIC_ECOM_API_URL;
 const STORE_SLUG = process.env.NEXT_PUBLIC_STORE_SLUG;
 
-if (!API_URL) {
+if (!DIRECT_API_URL) {
   throw new Error(
     "NEXT_PUBLIC_ECOM_API_URL is not set. " +
       "Add it to .env.local for local dev or to your Vercel project environment variables.",
   );
 }
+
+// In the browser, route through the Next.js proxy (/api/ecom) so the store_session
+// cookie is first-party on the storefront domain. iOS Safari's ITP blocks cross-site
+// cookies regardless of SameSite=None, which breaks cart/checkout on mobile.
+const API_URL =
+  typeof window === "undefined"
+    ? DIRECT_API_URL  // SSR / RSC: call commerce API directly
+    : "/api/ecom";    // Browser: same-origin proxy avoids ITP cookie blocking
 
 // ─── Core fetch wrapper ───────────────────────────────────────────────────────
 
@@ -51,6 +60,12 @@ export async function getProducts(params?: {
   if (params?.offset) query.set("offset", String(params.offset));
   const qs = query.size ? `?${query}` : "";
   return ecomFetch<ProductList>(`/v1/catalog/products${qs}`, {
+    next: { revalidate: 60 },
+  });
+}
+
+export async function getProduct(id: string): Promise<ProductDetail> {
+  return ecomFetch<ProductDetail>(`/v1/catalog/products/${id}`, {
     next: { revalidate: 60 },
   });
 }

@@ -10,6 +10,7 @@ import {
   Loader2,
 } from "lucide-react";
 import Image from "next/image";
+import Link from "next/link";
 import type { Product, PublicVariant, Cart, CartItem } from "@/lib/ecom/types";
 import {
   getCart,
@@ -54,6 +55,7 @@ function CartDrawer({
   onRemove,
   onCheckout,
   checkingOut,
+  checkoutError,
 }: {
   open: boolean;
   onClose: () => void;
@@ -62,6 +64,7 @@ function CartDrawer({
   onRemove: (variantId: string) => Promise<void>;
   onCheckout: () => Promise<void>;
   checkingOut: boolean;
+  checkoutError: string | null;
 }) {
   const [busyId, setBusyId] = useState<string | null>(null);
 
@@ -217,10 +220,10 @@ function CartDrawer({
                 "Checkout"
               )}
             </button>
-            <button
-              onClick={onClose}
-              className="w-full text-center text-sm text-gray-400 hover:text-gray-600 transition-colors"
-            >
+            {checkoutError && (
+              <p className="text-xs text-red-500 text-center -mt-2">{checkoutError}</p>
+            )}
+            <button onClick={onClose} className="w-full text-center text-sm text-gray-400 hover:text-gray-600 transition-colors">
               Continue Shopping
             </button>
           </div>
@@ -267,37 +270,35 @@ function ProductCard({
 
   return (
     <div className="bg-white rounded-2xl overflow-hidden border border-gray-100 shadow-sm hover:shadow-md transition-shadow duration-200 flex flex-col group">
-      <div className="relative aspect-square overflow-hidden bg-gray-50">
-        {product.primaryImage ? (
-          <Image
-            src={product.primaryImage.cdnUrl}
-            alt={product.primaryImage.altText ?? product.name}
-            fill
-            className="object-cover group-hover:scale-105 transition-transform duration-300"
-            sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
-          />
-        ) : (
-          <div className="w-full h-full bg-gray-100" />
-        )}
-        {variant?.availability === "low_stock" && (
-          <span className="absolute top-2 left-2 bg-amber-500 text-white text-xs font-bold px-2 py-0.5 rounded-full">
-            Low Stock
-          </span>
-        )}
-      </div>
-
-      <div className="p-5 flex flex-col gap-3 flex-1">
-        <div className="flex flex-col gap-1 flex-1">
-          <h3 className="text-base font-bold text-gray-900 leading-snug">
-            {product.name}
-          </h3>
-          {product.description && (
-            <p className="text-xs text-gray-500 leading-relaxed mt-1">
-              {product.description}
-            </p>
+      <Link href={`/shop/${product.id}`} className="block">
+        <div className="relative aspect-square overflow-hidden bg-gray-50">
+          {product.primaryImage ? (
+            <Image
+              src={product.primaryImage.cdnUrl}
+              alt={product.primaryImage.altText ?? product.name}
+              fill
+              className="object-cover group-hover:scale-105 transition-transform duration-300"
+              sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
+            />
+          ) : (
+            <div className="w-full h-full bg-gray-100" />
+          )}
+          {variant?.availability === "low_stock" && (
+            <span className="absolute top-2 left-2 bg-amber-500 text-white text-xs font-bold px-2 py-0.5 rounded-full">
+              Low Stock
+            </span>
           )}
         </div>
 
+        <div className="p-5 pb-3 flex flex-col gap-1">
+          <h3 className="text-base font-bold text-gray-900 leading-snug">{product.name}</h3>
+          {product.description && (
+            <p className="text-xs text-gray-500 leading-relaxed mt-1 line-clamp-2">{product.description}</p>
+          )}
+        </div>
+      </Link>
+
+      <div className="px-5 pb-5 flex flex-col gap-3 flex-1 justify-end">
         <div className="flex items-center justify-between pt-2 border-t border-gray-50">
           {variant ? (
             <div className="flex flex-col">
@@ -357,6 +358,7 @@ export default function ShopClient({ products }: { products: Product[] }) {
   const [sortBy, setSortBy] = useState("featured");
   const [sortOpen, setSortOpen] = useState(false);
   const [checkingOut, setCheckingOut] = useState(false);
+  const [checkoutError, setCheckoutError] = useState<string | null>(null);
 
   useEffect(() => {
     getCart()
@@ -386,6 +388,7 @@ export default function ShopClient({ products }: { products: Product[] }) {
 
   const handleCheckout = async () => {
     setCheckingOut(true);
+    setCheckoutError(null);
     try {
       const origin = window.location.origin;
       const result = await createCheckoutIntent({
@@ -393,8 +396,9 @@ export default function ShopClient({ products }: { products: Product[] }) {
         cancelUrl: `${origin}/shop`,
       });
       window.location.href = result.checkoutUrl;
-    } catch {
+    } catch (err) {
       setCheckingOut(false);
+      setCheckoutError(err instanceof Error ? err.message : "Checkout failed. Please try again.");
     }
   };
 
@@ -417,6 +421,7 @@ export default function ShopClient({ products }: { products: Product[] }) {
         onRemove={removeItem}
         onCheckout={handleCheckout}
         checkingOut={checkingOut}
+        checkoutError={checkoutError}
       />
 
       {/* ── Hero ── */}
