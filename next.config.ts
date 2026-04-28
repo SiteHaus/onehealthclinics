@@ -2,6 +2,14 @@ import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
   pageExtensions: ["ts", "tsx", "md", "mdx"],
+  async rewrites() {
+    return [
+      {
+        source: "/api/ecom/:path*",
+        destination: `${process.env.NEXT_PUBLIC_ECOM_API_URL}/:path*`,
+      },
+    ];
+  },
   images: {
     remotePatterns: [
       {
