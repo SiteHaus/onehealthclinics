@@ -221,9 +221,14 @@ function CartDrawer({
               )}
             </button>
             {checkoutError && (
-              <p className="text-xs text-red-500 text-center -mt-2">{checkoutError}</p>
+              <p className="text-xs text-red-500 text-center -mt-2">
+                {checkoutError}
+              </p>
             )}
-            <button onClick={onClose} className="w-full text-center text-sm text-gray-400 hover:text-gray-600 transition-colors">
+            <button
+              onClick={onClose}
+              className="w-full text-center text-sm text-gray-400 hover:text-gray-600 transition-colors"
+            >
               Continue Shopping
             </button>
           </div>
@@ -291,9 +296,13 @@ function ProductCard({
         </div>
 
         <div className="p-5 pb-3 flex flex-col gap-1">
-          <h3 className="text-base font-bold text-gray-900 leading-snug">{product.name}</h3>
+          <h3 className="text-base font-bold text-gray-900 leading-snug">
+            {product.name}
+          </h3>
           {product.description && (
-            <p className="text-xs text-gray-500 leading-relaxed mt-1 line-clamp-2">{product.description}</p>
+            <p className="text-xs text-gray-500 leading-relaxed mt-1 line-clamp-2">
+              {product.description}
+            </p>
           )}
         </div>
       </Link>
@@ -398,7 +407,11 @@ export default function ShopClient({ products }: { products: Product[] }) {
       window.location.href = result.checkoutUrl;
     } catch (err) {
       setCheckingOut(false);
-      setCheckoutError(err instanceof Error ? err.message : "Checkout failed. Please try again.");
+      setCheckoutError(
+        err instanceof Error
+          ? err.message
+          : "Checkout failed. Please try again.",
+      );
     }
   };
 
@@ -439,18 +452,6 @@ export default function ShopClient({ products }: { products: Product[] }) {
               quality, potency, and real results.
             </p>
           </div>
-          <button
-            onClick={() => setCartOpen(true)}
-            className="relative flex-shrink-0 flex items-center gap-2 bg-white/10 hover:bg-white/20 border border-white/20 text-background font-semibold px-5 py-3 rounded-xl transition-colors mt-1"
-          >
-            <ShoppingCart size={18} />
-            <span className="hidden sm:inline text-sm">Cart</span>
-            {cart.itemCount > 0 && (
-              <span className="absolute -top-2 -right-2 bg-primary text-white text-xs font-bold w-5 h-5 rounded-full flex items-center justify-center">
-                {cart.itemCount}
-              </span>
-            )}
-          </button>
         </div>
       </section>
 
@@ -461,16 +462,31 @@ export default function ShopClient({ products }: { products: Product[] }) {
             {products.length} product{products.length !== 1 ? "s" : ""}
           </p>
           <div className="relative z-40">
-            <button
-              onClick={() => setSortOpen((o) => !o)}
-              className="flex items-center gap-2 text-xs font-semibold uppercase tracking-widest text-gray-500 hover:text-gray-800 transition-colors border border-gray-200 rounded-lg px-3 py-2"
-            >
-              {sortOptions.find((o) => o.value === sortBy)?.label}
-              <ChevronDown
-                size={14}
-                className={`transition-transform ${sortOpen ? "rotate-180" : ""}`}
-              />
-            </button>
+            <div className="flex gap-2">
+              <button
+                onClick={() => setSortOpen((o) => !o)}
+                className="flex items-center gap-2 text-xs font-semibold uppercase tracking-widest text-gray-500 hover:text-gray-800 transition-colors border border-gray-200 rounded-lg px-3 py-2"
+              >
+                {sortOptions.find((o) => o.value === sortBy)?.label}
+                <ChevronDown
+                  size={14}
+                  className={`transition-transform ${sortOpen ? "rotate-180" : ""}`}
+                />
+              </button>
+              <button
+                onClick={() => setCartOpen(true)}
+                className="relative flex-shrink-0 flex items-center gap-2 text-xs font-semibold uppercase tracking-widest text-gray-500 hover:text-gray-800 transition-colors border border-gray-200 rounded-lg px-3 py-2"
+              >
+                <ShoppingCart size={14} />
+                <span className="hidden sm:inline">Cart</span>
+                {cart.itemCount > 0 && (
+                  <span className="absolute -top-2 -right-2 bg-primary text-white text-xs font-bold w-5 h-5 rounded-full flex items-center justify-center">
+                    {cart.itemCount}
+                  </span>
+                )}
+              </button>
+            </div>
+
             {sortOpen && (
               <div className="absolute right-0 top-full mt-1 bg-white border border-gray-100 rounded-xl shadow-lg z-20 overflow-hidden min-w-[170px]">
                 {sortOptions.map((opt) => (
