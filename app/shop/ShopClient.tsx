@@ -1,8 +1,16 @@
 "use client";
 
 import { useState, useEffect } from "react";
-import { ShoppingCart, X, Plus, Minus, ChevronDown, Loader2 } from "lucide-react";
+import {
+  ShoppingCart,
+  X,
+  Plus,
+  Minus,
+  ChevronDown,
+  Loader2,
+} from "lucide-react";
 import Image from "next/image";
+import Link from "next/link";
 import type { Product, PublicVariant, Cart, CartItem } from "@/lib/ecom/types";
 import {
   getCart,
@@ -29,7 +37,13 @@ const sortOptions = [
   { label: "Name A–Z", value: "name-asc" },
 ];
 
-const emptyCart: Cart = { id: null, items: [], subtotalCents: 0, itemCount: 0, expiresAt: null };
+const emptyCart: Cart = {
+  id: null,
+  items: [],
+  subtotalCents: 0,
+  itemCount: 0,
+  expiresAt: null,
+};
 
 // ─── Cart Drawer ──────────────────────────────────────────────────────────────
 
@@ -41,6 +55,7 @@ function CartDrawer({
   onRemove,
   onCheckout,
   checkingOut,
+  checkoutError,
 }: {
   open: boolean;
   onClose: () => void;
@@ -49,6 +64,7 @@ function CartDrawer({
   onRemove: (variantId: string) => Promise<void>;
   onCheckout: () => Promise<void>;
   checkingOut: boolean;
+  checkoutError: string | null;
 }) {
   const [busyId, setBusyId] = useState<string | null>(null);
 
@@ -84,7 +100,10 @@ function CartDrawer({
             <div className="w-6 h-0.5 bg-primary rounded-full mb-1" />
             <h2 className="text-lg font-bold text-gray-900">Your Cart</h2>
           </div>
-          <button onClick={onClose} className="text-gray-400 hover:text-gray-700 transition-colors">
+          <button
+            onClick={onClose}
+            className="text-gray-400 hover:text-gray-700 transition-colors"
+          >
             <X size={20} />
           </button>
         </div>
@@ -94,7 +113,10 @@ function CartDrawer({
             <div className="flex flex-col items-center justify-center h-full gap-3 text-center">
               <ShoppingCart size={40} className="text-gray-200" />
               <p className="text-gray-400 text-sm">Your cart is empty.</p>
-              <button onClick={onClose} className="text-primary text-sm font-semibold hover:underline">
+              <button
+                onClick={onClose}
+                className="text-primary text-sm font-semibold hover:underline"
+              >
                 Continue Shopping →
               </button>
             </div>
@@ -102,7 +124,10 @@ function CartDrawer({
             cart.items.map((item: CartItem) => {
               const isBusy = busyId === item.variantId;
               return (
-                <div key={item.variantId} className="flex gap-4 items-start border-b border-gray-50 pb-4">
+                <div
+                  key={item.variantId}
+                  className="flex gap-4 items-start border-b border-gray-50 pb-4"
+                >
                   {item.primaryImageUrl ? (
                     <Image
                       src={item.primaryImageUrl}
@@ -115,21 +140,33 @@ function CartDrawer({
                     <div className="w-16 h-16 rounded-xl bg-gray-100 flex-shrink-0" />
                   )}
                   <div className="flex-1 min-w-0">
-                    <p className="text-sm font-semibold text-gray-800 leading-tight">{item.productName}</p>
-                    <p className="text-xs text-gray-400 mb-2">{formatPrice(item.priceCents)} each</p>
+                    <p className="text-sm font-semibold text-gray-800 leading-tight">
+                      {item.productName}
+                    </p>
+                    <p className="text-xs text-gray-400 mb-2">
+                      {formatPrice(item.priceCents)} each
+                    </p>
                     <div className="flex items-center gap-2">
                       <button
-                        onClick={() => handleUpdateQty(item.variantId, item.quantity - 1)}
+                        onClick={() =>
+                          handleUpdateQty(item.variantId, item.quantity - 1)
+                        }
                         disabled={isBusy}
                         className="w-6 h-6 rounded-full border border-gray-200 flex items-center justify-center text-gray-500 hover:border-primary hover:text-primary transition-colors disabled:opacity-40"
                       >
                         <Minus size={10} />
                       </button>
                       <span className="text-sm font-medium text-gray-800 w-4 text-center">
-                        {isBusy ? <Loader2 size={12} className="animate-spin mx-auto" /> : item.quantity}
+                        {isBusy ? (
+                          <Loader2 size={12} className="animate-spin mx-auto" />
+                        ) : (
+                          item.quantity
+                        )}
                       </span>
                       <button
-                        onClick={() => handleUpdateQty(item.variantId, item.quantity + 1)}
+                        onClick={() =>
+                          handleUpdateQty(item.variantId, item.quantity + 1)
+                        }
                         disabled={isBusy}
                         className="w-6 h-6 rounded-full border border-gray-200 flex items-center justify-center text-gray-500 hover:border-primary hover:text-primary transition-colors disabled:opacity-40"
                       >
@@ -138,13 +175,19 @@ function CartDrawer({
                     </div>
                   </div>
                   <div className="flex flex-col items-end gap-2">
-                    <p className="text-sm font-bold text-gray-800">{formatPrice(item.lineTotalCents)}</p>
+                    <p className="text-sm font-bold text-gray-800">
+                      {formatPrice(item.lineTotalCents)}
+                    </p>
                     <button
                       onClick={() => handleRemove(item.variantId)}
                       disabled={isBusy}
                       className="text-gray-300 hover:text-red-400 transition-colors disabled:opacity-40"
                     >
-                      {isBusy ? <Loader2 size={14} className="animate-spin" /> : <X size={14} />}
+                      {isBusy ? (
+                        <Loader2 size={14} className="animate-spin" />
+                      ) : (
+                        <X size={14} />
+                      )}
                     </button>
                   </div>
                 </div>
@@ -157,21 +200,35 @@ function CartDrawer({
           <div className="px-6 py-5 border-t border-gray-100 flex flex-col gap-4">
             <div className="flex justify-between items-center">
               <span className="text-sm text-gray-500">Subtotal</span>
-              <span className="text-lg font-bold text-gray-900">{formatPrice(cart.subtotalCents)}</span>
+              <span className="text-lg font-bold text-gray-900">
+                {formatPrice(cart.subtotalCents)}
+              </span>
             </div>
-            <p className="text-xs text-gray-400">Shipping and taxes calculated at checkout.</p>
+            <p className="text-xs text-gray-400">
+              Shipping and taxes calculated at checkout.
+            </p>
             <button
               onClick={onCheckout}
               disabled={checkingOut}
               className="w-full bg-primary text-white font-semibold py-3 rounded-lg hover:opacity-90 transition-opacity disabled:opacity-60 flex items-center justify-center gap-2"
             >
               {checkingOut ? (
-                <><Loader2 size={15} className="animate-spin" /> Redirecting…</>
+                <>
+                  <Loader2 size={15} className="animate-spin" /> Redirecting…
+                </>
               ) : (
                 "Checkout"
               )}
             </button>
-            <button onClick={onClose} className="w-full text-center text-sm text-gray-400 hover:text-gray-600 transition-colors">
+            {checkoutError && (
+              <p className="text-xs text-red-500 text-center -mt-2">
+                {checkoutError}
+              </p>
+            )}
+            <button
+              onClick={onClose}
+              className="w-full text-center text-sm text-gray-400 hover:text-gray-600 transition-colors"
+            >
               Continue Shopping
             </button>
           </div>
@@ -190,7 +247,9 @@ function ProductCard({
   product: Product;
   onAdd: (variantId: string) => Promise<void>;
 }) {
-  const [state, setState] = useState<"idle" | "adding" | "added" | "error">("idle");
+  const [state, setState] = useState<"idle" | "adding" | "added" | "error">(
+    "idle",
+  );
   const [errorMsg, setErrorMsg] = useState<string | null>(null);
   const variant = primaryVariant(product);
   const outOfStock = variant?.availability === "out_of_stock";
@@ -207,46 +266,60 @@ function ProductCard({
       const msg = err instanceof Error ? err.message : "Failed to add";
       setErrorMsg(msg);
       setState("error");
-      setTimeout(() => { setState("idle"); setErrorMsg(null); }, 3000);
+      setTimeout(() => {
+        setState("idle");
+        setErrorMsg(null);
+      }, 3000);
     }
   };
 
   return (
     <div className="bg-white rounded-2xl overflow-hidden border border-gray-100 shadow-sm hover:shadow-md transition-shadow duration-200 flex flex-col group">
-      <div className="relative aspect-square overflow-hidden bg-gray-50">
-        {product.primaryImage ? (
-          <Image
-            src={product.primaryImage.cdnUrl}
-            alt={product.primaryImage.altText ?? product.name}
-            fill
-            className="object-cover group-hover:scale-105 transition-transform duration-300"
-            sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
-          />
-        ) : (
-          <div className="w-full h-full bg-gray-100" />
-        )}
-        {variant?.availability === "low_stock" && (
-          <span className="absolute top-2 left-2 bg-amber-500 text-white text-xs font-bold px-2 py-0.5 rounded-full">
-            Low Stock
-          </span>
-        )}
-      </div>
-
-      <div className="p-5 flex flex-col gap-3 flex-1">
-        <div className="flex flex-col gap-1 flex-1">
-          <h3 className="text-base font-bold text-gray-900 leading-snug">{product.name}</h3>
-          {product.description && (
-            <p className="text-xs text-gray-500 leading-relaxed mt-1">{product.description}</p>
+      <Link href={`/shop/${product.id}`} className="block">
+        <div className="relative aspect-square overflow-hidden bg-gray-50">
+          {product.primaryImage ? (
+            <Image
+              src={product.primaryImage.cdnUrl}
+              alt={product.primaryImage.altText ?? product.name}
+              fill
+              className="object-cover group-hover:scale-105 transition-transform duration-300"
+              sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
+            />
+          ) : (
+            <div className="w-full h-full bg-gray-100" />
+          )}
+          {variant?.availability === "low_stock" && (
+            <span className="absolute top-2 left-2 bg-amber-500 text-white text-xs font-bold px-2 py-0.5 rounded-full">
+              Low Stock
+            </span>
           )}
         </div>
 
+        <div className="p-5 pb-3 flex flex-col gap-1">
+          <h3 className="text-base font-bold text-gray-900 leading-snug">
+            {product.name}
+          </h3>
+          {product.description && (
+            <p className="text-xs text-gray-500 leading-relaxed mt-1 line-clamp-2">
+              {product.description}
+            </p>
+          )}
+        </div>
+      </Link>
+
+      <div className="px-5 pb-5 flex flex-col gap-3 flex-1 justify-end">
         <div className="flex items-center justify-between pt-2 border-t border-gray-50">
           {variant ? (
             <div className="flex flex-col">
-              <span className="text-lg font-bold text-gray-900">{formatPrice(variant.priceCents)}</span>
-              {variant.compareAtCents && variant.compareAtCents > variant.priceCents && (
-                <span className="text-xs text-gray-400 line-through">{formatPrice(variant.compareAtCents)}</span>
-              )}
+              <span className="text-lg font-bold text-gray-900">
+                {formatPrice(variant.priceCents)}
+              </span>
+              {variant.compareAtCents &&
+                variant.compareAtCents > variant.priceCents && (
+                  <span className="text-xs text-gray-400 line-through">
+                    {formatPrice(variant.compareAtCents)}
+                  </span>
+                )}
             </div>
           ) : (
             <span className="text-sm text-gray-400">—</span>
@@ -267,7 +340,9 @@ function ProductCard({
                       : "bg-primary text-white hover:opacity-90"
             }`}
           >
-            {state === "adding" && <Loader2 size={12} className="animate-spin" />}
+            {state === "adding" && (
+              <Loader2 size={12} className="animate-spin" />
+            )}
             {outOfStock
               ? "Out of Stock"
               : state === "adding"
@@ -292,9 +367,14 @@ export default function ShopClient({ products }: { products: Product[] }) {
   const [sortBy, setSortBy] = useState("featured");
   const [sortOpen, setSortOpen] = useState(false);
   const [checkingOut, setCheckingOut] = useState(false);
+  const [checkoutError, setCheckoutError] = useState<string | null>(null);
 
   useEffect(() => {
-    getCart().then(setCart).catch(() => {/* no active cart — stay empty */});
+    getCart()
+      .then(setCart)
+      .catch(() => {
+        /* no active cart — stay empty */
+      });
   }, []);
 
   const addToCart = async (variantId: string) => {
@@ -303,9 +383,10 @@ export default function ShopClient({ products }: { products: Product[] }) {
   };
 
   const updateQty = async (variantId: string, qty: number) => {
-    const updated = qty <= 0
-      ? await removeCartItem(variantId)
-      : await updateCartItem(variantId, qty);
+    const updated =
+      qty <= 0
+        ? await removeCartItem(variantId)
+        : await updateCartItem(variantId, qty);
     setCart(updated);
   };
 
@@ -316,6 +397,7 @@ export default function ShopClient({ products }: { products: Product[] }) {
 
   const handleCheckout = async () => {
     setCheckingOut(true);
+    setCheckoutError(null);
     try {
       const origin = window.location.origin;
       const result = await createCheckoutIntent({
@@ -323,8 +405,13 @@ export default function ShopClient({ products }: { products: Product[] }) {
         cancelUrl: `${origin}/shop`,
       });
       window.location.href = result.checkoutUrl;
-    } catch {
+    } catch (err) {
       setCheckingOut(false);
+      setCheckoutError(
+        err instanceof Error
+          ? err.message
+          : "Checkout failed. Please try again.",
+      );
     }
   };
 
@@ -347,6 +434,7 @@ export default function ShopClient({ products }: { products: Product[] }) {
         onRemove={removeItem}
         onCheckout={handleCheckout}
         checkingOut={checkingOut}
+        checkoutError={checkoutError}
       />
 
       {/* ── Hero ── */}
@@ -360,21 +448,10 @@ export default function ShopClient({ products }: { products: Product[] }) {
               Supplement Shop
             </h1>
             <p className="max-w-xl text-white/80 text-lg leading-relaxed">
-              Supplements selected and trusted by our providers — formulated for quality, potency, and real results.
+              Supplements selected and trusted by our providers — formulated for
+              quality, potency, and real results.
             </p>
           </div>
-          <button
-            onClick={() => setCartOpen(true)}
-            className="relative flex-shrink-0 flex items-center gap-2 bg-white/10 hover:bg-white/20 border border-white/20 text-background font-semibold px-5 py-3 rounded-xl transition-colors mt-1"
-          >
-            <ShoppingCart size={18} />
-            <span className="hidden sm:inline text-sm">Cart</span>
-            {cart.itemCount > 0 && (
-              <span className="absolute -top-2 -right-2 bg-primary text-white text-xs font-bold w-5 h-5 rounded-full flex items-center justify-center">
-                {cart.itemCount}
-              </span>
-            )}
-          </button>
         </div>
       </section>
 
@@ -385,19 +462,40 @@ export default function ShopClient({ products }: { products: Product[] }) {
             {products.length} product{products.length !== 1 ? "s" : ""}
           </p>
           <div className="relative z-40">
-            <button
-              onClick={() => setSortOpen((o) => !o)}
-              className="flex items-center gap-2 text-xs font-semibold uppercase tracking-widest text-gray-500 hover:text-gray-800 transition-colors border border-gray-200 rounded-lg px-3 py-2"
-            >
-              {sortOptions.find((o) => o.value === sortBy)?.label}
-              <ChevronDown size={14} className={`transition-transform ${sortOpen ? "rotate-180" : ""}`} />
-            </button>
+            <div className="flex gap-2">
+              <button
+                onClick={() => setSortOpen((o) => !o)}
+                className="flex items-center gap-2 text-xs font-semibold uppercase tracking-widest text-gray-500 hover:text-gray-800 transition-colors border border-gray-200 rounded-lg px-3 py-2"
+              >
+                {sortOptions.find((o) => o.value === sortBy)?.label}
+                <ChevronDown
+                  size={14}
+                  className={`transition-transform ${sortOpen ? "rotate-180" : ""}`}
+                />
+              </button>
+              <button
+                onClick={() => setCartOpen(true)}
+                className="relative flex-shrink-0 flex items-center gap-2 text-xs font-semibold uppercase tracking-widest text-gray-500 hover:text-gray-800 transition-colors border border-gray-200 rounded-lg px-3 py-2"
+              >
+                <ShoppingCart size={14} />
+                <span className="hidden sm:inline">Cart</span>
+                {cart.itemCount > 0 && (
+                  <span className="absolute -top-2 -right-2 bg-primary text-white text-xs font-bold w-5 h-5 rounded-full flex items-center justify-center">
+                    {cart.itemCount}
+                  </span>
+                )}
+              </button>
+            </div>
+
             {sortOpen && (
               <div className="absolute right-0 top-full mt-1 bg-white border border-gray-100 rounded-xl shadow-lg z-20 overflow-hidden min-w-[170px]">
                 {sortOptions.map((opt) => (
                   <button
                     key={opt.value}
-                    onClick={() => { setSortBy(opt.value); setSortOpen(false); }}
+                    onClick={() => {
+                      setSortBy(opt.value);
+                      setSortOpen(false);
+                    }}
                     className={`w-full text-left px-4 py-2.5 text-xs font-semibold uppercase tracking-widest transition-colors ${
                       sortBy === opt.value
                         ? "text-primary bg-primary/5"
@@ -432,7 +530,11 @@ export default function ShopClient({ products }: { products: Product[] }) {
           ) : (
             <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
               {sorted.map((product) => (
-                <ProductCard key={product.id} product={product} onAdd={addToCart} />
+                <ProductCard
+                  key={product.id}
+                  product={product}
+                  onAdd={addToCart}
+                />
               ))}
             </div>
           )}
@@ -443,14 +545,25 @@ export default function ShopClient({ products }: { products: Product[] }) {
       <section className="bg-white py-14 px-6 border-t border-gray-100">
         <div className="max-w-5xl mx-auto grid sm:grid-cols-3 gap-8 text-center">
           {[
-            { label: "Provider-Recommended", detail: "Every product is selected and trusted by our clinical team." },
-            { label: "Pharmaceutical Grade", detail: "Formulated to the highest standards." },
-            { label: "Questions? Call Us", detail: "(435) 688-0759 — Mon–Fri 8am to 5pm" },
+            {
+              label: "Provider-Recommended",
+              detail:
+                "Every product is selected and trusted by our clinical team.",
+            },
+            {
+              label: "Pharmaceutical Grade",
+              detail: "Formulated to the highest standards.",
+            },
+            { label: "Questions? Call Us", detail: "(435) 688-0759" },
           ].map((item) => (
             <div key={item.label} className="flex flex-col items-center gap-2">
               <div className="w-8 h-0.5 bg-primary rounded-full mb-1" />
-              <p className="text-sm font-bold text-gray-800 uppercase tracking-widest">{item.label}</p>
-              <p className="text-xs text-gray-500 leading-relaxed max-w-xs">{item.detail}</p>
+              <p className="text-sm font-bold text-gray-800 uppercase tracking-widest">
+                {item.label}
+              </p>
+              <p className="text-xs text-gray-500 leading-relaxed max-w-xs">
+                {item.detail}
+              </p>
             </div>
           ))}
         </div>
@@ -462,9 +575,12 @@ export default function ShopClient({ products }: { products: Product[] }) {
           <div className="flex flex-col gap-6">
             <div>
               <div className="w-10 h-1 bg-subtext rounded-full mb-4" />
-              <h2 className="text-2xl font-bold text-foreground mb-2">Not Sure What to Take?</h2>
+              <h2 className="text-2xl font-bold text-foreground mb-2">
+                Not Sure What to Take?
+              </h2>
               <p className="text-foreground/80 leading-relaxed">
-                Our providers can help you find the right supplements based on your health history and goals. Reach out and we'll guide you.
+                Our providers can help you find the right supplements based on
+                your health history and goals. Reach out and we'll guide you.
               </p>
             </div>
           </div>

@@ -6,7 +6,10 @@ import { useActionState } from "react";
 const initialState: ContactFormState = { status: "idle" };
 
 export default function ContactPage() {
-  const [state, action, pending] = useActionState(submitContactForm, initialState);
+  const [state, action, pending] = useActionState(
+    submitContactForm,
+    initialState,
+  );
 
   return (
     <div className="w-full text-white">
@@ -59,7 +62,7 @@ export default function ContactPage() {
                 <p className="text-sm font-semibold uppercase tracking-widest text-primary mb-1">
                   Hours
                 </p>
-                <p className="text-gray-700">Monday – Friday: 8am – 5pm</p>
+                <p className="text-gray-700">Monday – Friday: 8:30am – 5pm</p>
                 <p className="text-gray-700">
                   Thursday: Closed between 12pm - 1:15pm
                 </p>
@@ -79,7 +82,9 @@ export default function ContactPage() {
 
             {state.status === "success" ? (
               <div className="flex flex-col gap-3 py-8 text-center">
-                <p className="text-lg font-semibold text-gray-800">Message sent!</p>
+                <p className="text-lg font-semibold text-gray-800">
+                  Message sent!
+                </p>
                 <p className="text-gray-500 text-sm">
                   We'll get back to you as soon as we can.
                 </p>
@@ -121,6 +126,18 @@ export default function ContactPage() {
                     type="email"
                     placeholder="jane@example.com"
                     required
+                    className="border border-gray-200 rounded-lg px-4 py-3 text-gray-800 focus:outline-none focus:ring-2 focus:ring-primary"
+                  />
+                </div>
+
+                <div className="flex flex-col gap-1">
+                  <label className="text-sm font-medium text-gray-600">
+                    Phone Number
+                  </label>
+                  <input
+                    name="phone"
+                    type="tel"
+                    placeholder="(435) 555-0100"
                     className="border border-gray-200 rounded-lg px-4 py-3 text-gray-800 focus:outline-none focus:ring-2 focus:ring-primary"
                   />
                 </div>

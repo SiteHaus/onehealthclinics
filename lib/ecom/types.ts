@@ -2,18 +2,39 @@
 
 export type Availability = "in_stock" | "low_stock" | "out_of_stock";
 
+export type VariantOptionValue = {
+  optionId: string;
+  optionName: string;
+  valueId: string;
+  value: string;
+};
+
 export type PublicVariant = {
   id: string;
   name: string;
   priceCents: number;
   compareAtCents: number | null;
   availability: Availability;
+  optionValues: VariantOptionValue[];
 };
 
 export type ProductImage = {
   cdnUrl: string;
   altText: string | null;
 } | null;
+
+export type OptionValue = {
+  id: string;
+  value: string;
+  sortOrder: number;
+};
+
+export type Option = {
+  id: string;
+  name: string;
+  sortOrder: number;
+  values: OptionValue[];
+};
 
 export type Product = {
   id: string;
@@ -22,6 +43,19 @@ export type Product = {
   scheduled: boolean;
   goesLiveAt: string | null;
   primaryImage: ProductImage;
+  variants: PublicVariant[] | null;
+};
+
+export type ProductDetail = {
+  id: string;
+  name: string;
+  description: string | null;
+  brand: string | null;
+  scheduled: boolean;
+  goesLiveAt: string | null;
+  primaryImage: ProductImage;
+  images: { cdnUrl: string; altText: string | null }[];
+  options: Option[];
   variants: PublicVariant[] | null;
 };
 
