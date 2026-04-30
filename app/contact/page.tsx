@@ -132,6 +132,18 @@ export default function ContactPage() {
 
                 <div className="flex flex-col gap-1">
                   <label className="text-sm font-medium text-gray-600">
+                    Phone Number
+                  </label>
+                  <input
+                    name="phone"
+                    type="tel"
+                    placeholder="(435) 555-0100"
+                    className="border border-gray-200 rounded-lg px-4 py-3 text-gray-800 focus:outline-none focus:ring-2 focus:ring-primary"
+                  />
+                </div>
+
+                <div className="flex flex-col gap-1">
+                  <label className="text-sm font-medium text-gray-600">
                     Message
                   </label>
                   <textarea

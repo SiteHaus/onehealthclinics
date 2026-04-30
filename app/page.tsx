@@ -31,11 +31,10 @@ export default function Home() {
                   onClick={() => router.push("/contact")}
                   className="w-fit px-8 py-5 text-base rounded-xl"
                 >
-                  Book an Appointment
+                  Contact our Office (New Patient)
                 </Button>
                 <Button
-                  variant="outline"
-                  className="w-fit px-8 py-5 text-base rounded-xl bg-white/10 border-white/30 text-white hover:bg-white/20 hover:text-white"
+                  className="w-fit px-8 py-5 text-base rounded-xl"
                   onClick={() =>
                     window.open(
                       "https://mycw18.eclinicalweb.com/portal1225/jsp/100mp/login_otp.jsp",
@@ -43,7 +42,7 @@ export default function Home() {
                     )
                   }
                 >
-                  Patient Portal
+                  Patient Portal (Existing Patients)
                 </Button>
               </div>
             </div>
