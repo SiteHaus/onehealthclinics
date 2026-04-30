@@ -16,6 +16,7 @@ export async function submitContactForm(
   const firstName = formData.get("firstName")?.toString().trim() ?? "";
   const lastName = formData.get("lastName")?.toString().trim() ?? "";
   const email = formData.get("email")?.toString().trim() ?? "";
+  const phone = formData.get("phone")?.toString().trim() ?? "";
   const message = formData.get("message")?.toString().trim() ?? "";
 
   if (!firstName || !email || !message) {
@@ -33,10 +34,11 @@ export async function submitContactForm(
       to,
       replyTo: email,
       subject: `New message from ${firstName} ${lastName}`,
-      text: `Name: ${firstName} ${lastName}\nEmail: ${email}\n\n${message}`,
+      text: `Name: ${firstName} ${lastName}\nEmail: ${email}\n${phone ? `Phone: ${phone}\n` : ""}\n${message}`,
       html: `
         <p><strong>Name:</strong> ${firstName} ${lastName}</p>
         <p><strong>Email:</strong> <a href="mailto:${email}">${email}</a></p>
+        ${phone ? `<p><strong>Phone:</strong> <a href="tel:${phone}">${phone}</a></p>` : ""}
         <hr />
         <p style="white-space:pre-wrap">${message}</p>
       `,
