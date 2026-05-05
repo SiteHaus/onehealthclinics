@@ -64,14 +64,7 @@ export default function ContactPage() {
                   className="group flex items-center gap-2 text-gray-700 hover:text-blue-600 transition-colors duration-200"
                 >
                   <FaSearchLocation />
-                  <span className="flex flex-col leading-tight">
-                    <span className="font-semibold text-sm">
-                      OneHealth / Dixie Primary Care
-                    </span>
-                    <span className="text-xs text-gray-500 group-hover:text-blue-500">
-                      St. George, UT · Open in Google Maps ↗
-                    </span>
-                  </span>
+                  <span>292 S 1470 E #200, St. George, UT 84790</span>
                 </a>
               </div>
               <div>
