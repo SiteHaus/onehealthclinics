@@ -8,6 +8,7 @@ import {
   Minus,
   ChevronDown,
   Loader2,
+  ArrowRight,
 } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
@@ -117,7 +118,7 @@ function CartDrawer({
                 onClick={onClose}
                 className="text-primary text-sm font-semibold hover:underline"
               >
-                Continue Shopping →
+                Continue Shopping <ArrowRight className="h-3 w-3 inline" />
               </button>
             </div>
           ) : (

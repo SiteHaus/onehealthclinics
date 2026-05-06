@@ -7,6 +7,7 @@ import {
   CarouselNext,
   CarouselPrevious,
 } from "@/components/ui/carousel";
+import { ArrowRight } from "lucide-react";
 
 // ─── Data ────────────────────────────────────────────────────────────────────
 
@@ -61,6 +62,7 @@ const clinicServices = [
 const specialtyServices = [
   {
     id: "weight-loss",
+    href: "/services/weight-loss",
     title: "Weight Loss Program",
     label: "Specialty Services",
     image: "/weight.png",
@@ -70,6 +72,7 @@ const specialtyServices = [
   },
   {
     id: "hrt",
+    href: "/services/hormone-therapy",
     title: "Hormone Pellet / Replacement Therapy",
     label: "Specialty Services",
     image: "/zen.jpg",
@@ -79,6 +82,7 @@ const specialtyServices = [
   },
   {
     id: "nad-infusions",
+    href: "/services/nad-infusions",
     title: "NAD+ Infusions",
     label: "Specialty Services",
     image: "/nad.png",
@@ -88,6 +92,7 @@ const specialtyServices = [
   },
   {
     id: "vitamin-infusions",
+    href: "/services/vitamin-infusions",
     title: "Vitamin Infusions",
     label: "Specialty Services",
     image: "/vitinf.jpg",
@@ -97,6 +102,7 @@ const specialtyServices = [
   },
   {
     id: "vitamin-injections",
+    href: undefined,
     title: "Vitamin Injections",
     label: "Specialty Services",
     image: "/vitinj.png",
@@ -106,6 +112,7 @@ const specialtyServices = [
   },
   {
     id: "prp",
+    href: "/services/prp",
     title: "PRP & Hyaluronic Acid Joint Injections",
     label: "Specialty Services",
     image: "prp.webp",
@@ -176,9 +183,17 @@ function SpecialtyCard({
           {service.label}
         </p>
         <h3 className="text-lg font-bold text-gray-900">{service.title}</h3>
-        <p className="text-gray-600 leading-relaxed text-sm">
+        <p className="text-gray-600 leading-relaxed text-sm flex-1">
           {service.description}
         </p>
+        {service.href && (
+          <a
+            href={service.href}
+            className="text-sm font-semibold text-primary hover:underline mt-1"
+          >
+            Learn More <ArrowRight className="h-3 w-3 inline" />
+          </a>
+        )}
       </div>
     </div>
   );
@@ -207,14 +222,15 @@ export default function ServicesPage() {
       </section>
 
       {/* ── Quick Nav ── */}
-      <section className="bg-white border-b border-gray-100 px-6 py-6 sticky top-16 z-20 shadow-sm">
-        <div className="max-w-5xl mx-auto flex flex-wrap gap-3">
+      <section className="bg-white border-b border-gray-100 px-6 py-4 sticky top-16 z-20 shadow-sm">
+        <div className="max-w-5xl mx-auto flex flex-wrap gap-2">
           {[
             { label: "Primary Care", href: "#primary-care" },
             { label: "Dermatology", href: "#dermatology" },
             { label: "Women's Health", href: "#womens-health" },
             { label: "Men's Health", href: "#mens-health" },
             { label: "Birth Control", href: "#birth-control" },
+            { label: "Pediatric Care", href: "/pediatrics" },
             { label: "Weight Loss", href: "#weight-loss" },
             { label: "Hormone Therapy", href: "#hrt" },
             { label: "NAD+ Infusions", href: "#nad-infusions" },
@@ -225,7 +241,7 @@ export default function ServicesPage() {
             <a
               key={link.href}
               href={link.href}
-              className="text-xs font-semibold uppercase tracking-widest text-gray-500 hover:text-primary transition-colors"
+              className="text-xs font-semibold uppercase tracking-widest text-gray-500 border border-gray-200 rounded-full px-3 py-1.5 hover:border-primary hover:text-primary transition-colors whitespace-nowrap"
             >
               {link.label}
             </a>
@@ -246,13 +262,51 @@ export default function ServicesPage() {
           </div>
 
           {clinicServices.map((service, i) => (
-            <div key={service.id} id={service.id}>
+            <div key={service.id} id={service.id} className="scroll-mt-28">
               <ServiceCard service={service} imageLeft={i % 2 === 0} />
               {i < clinicServices.length - 1 && (
                 <div className="border-b border-gray-100 mt-20" />
               )}
             </div>
           ))}
+        </div>
+      </section>
+
+      {/* ── Pediatric Care Callout ── */}
+      <section className="bg-white px-6 pb-20">
+        <div className="max-w-5xl mx-auto">
+          <div className="rounded-2xl bg-gray-50 border border-gray-100 p-10 flex flex-col md:flex-row gap-8 items-center">
+            <div className="flex-1 flex flex-col gap-4">
+              <div>
+                <div className="w-10 h-1 bg-primary rounded-full mb-4" />
+                <p className="text-sm font-semibold uppercase tracking-widest text-primary mb-2">
+                  Pediatric Care
+                </p>
+                <h2 className="text-2xl font-bold text-gray-900">
+                  Specialized Care for Your Children
+                </h2>
+              </div>
+              <p className="text-gray-600 leading-relaxed text-sm">
+                From newborn well-child visits to teen health, sports physicals,
+                immunizations, and same-day urgent care — our dedicated
+                pediatric team led by Dr. Carl Turner, DO, is here for every
+                stage of your child's growth.
+              </p>
+              <a
+                href="/pediatrics"
+                className="w-fit text-sm font-semibold text-primary border border-primary rounded-full px-5 py-2 hover:bg-primary hover:text-white transition-colors"
+              >
+                Explore Pediatric Services <ArrowRight className="h-4 w-4 inline" />
+              </a>
+            </div>
+            <div className="w-full md:w-64 rounded-xl overflow-hidden shadow-sm aspect-[4/3] flex-shrink-0">
+              <img
+                src="/gumball.jpg"
+                alt="Pediatric care at OneHealth Clinics in St. George, Utah"
+                className="w-full h-full object-cover"
+              />
+            </div>
+          </div>
         </div>
       </section>
 
@@ -273,7 +327,7 @@ export default function ServicesPage() {
         <div className="max-w-5xl mx-auto">
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
             {specialtyServices.map((service) => (
-              <div key={service.id} id={service.id}>
+              <div key={service.id} id={service.id} className="scroll-mt-28">
                 <SpecialtyCard service={service} />
               </div>
             ))}

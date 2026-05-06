@@ -1,8 +1,7 @@
 "use client";
 
-import { Check } from "lucide-react";
+import { Check, Facebook, Instagram, Twitter } from "lucide-react";
 import { useRouter } from "next/navigation";
-import { FaFacebookF, FaInstagram, FaTwitter } from "react-icons/fa";
 import { Button } from "../ui/button";
 
 export const Footer = () => {
@@ -45,7 +44,7 @@ export const Footer = () => {
         {/* Right Section */}
         <div className="flex flex-col md:items-end lg:items-left items-center gap-4 mt-6 md:mt-0">
           <Button
-            onClick={() => router.push("/contact")}
+            onClick={() => router.push("/contact#book-appointment")}
             variant="outline"
             className="border-white text-primary hover:bg-white hover:text-primary w-fit px-6 py-4 rounded-xl"
           >
@@ -66,7 +65,7 @@ export const Footer = () => {
             target="_blank"
             rel="noopener noreferrer"
           >
-            <FaInstagram size={"25px"} />
+            <Instagram size={25} />
           </a>
 
           <a
@@ -74,7 +73,7 @@ export const Footer = () => {
             target="_blank"
             rel="noopener noreferrer"
           >
-            <FaFacebookF size={"25px"} />
+            <Facebook size={25} />
           </a>
 
           <a
@@ -82,7 +81,7 @@ export const Footer = () => {
             target="_blank"
             rel="noopener noreferrer"
           >
-            <FaTwitter size={"25px"} />
+            <Twitter size={25} />
           </a>
         </div>
         <div className="text-white/30 text-xs">
