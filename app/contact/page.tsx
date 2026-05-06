@@ -2,6 +2,7 @@
 
 import { submitContactForm, type ContactFormState } from "./actions";
 import { useActionState } from "react";
+import { FaSearchLocation } from "react-icons/fa";
 
 const initialState: ContactFormState = { status: "idle" };
 
@@ -56,7 +57,15 @@ export default function ContactPage() {
                 <p className="text-sm font-semibold uppercase tracking-widest text-primary mb-1">
                   Address
                 </p>
-                <p className="text-gray-700 text-lg">St. George, Utah</p>
+                <a
+                  href="https://www.google.com/maps/place/OneHealth+%2F+Dixie+Primary+Care/@37.1031463,-113.554825,17z/data=!3m2!4b1!5s0x80ca5adf74dea3a1:0x21fcecb4a017bdf3!4m6!3m5!1s0x80ca452ae454e5ff:0xd2fc41cc730420ef!8m2!3d37.103142!4d-113.5522501!16s%2Fg%2F1tdqttm8?entry=ttu&g_ep=EgoyMDI2MDUwMi4wIKXMDSoASAFQAw%3D%3D"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="group inline-flex items-center gap-2 text-teal-700 underline underline-offset-2 hover:text-teal-900 cursor-pointer transition-colors duration-200"
+                >
+                  <FaSearchLocation className="shrink-0" />
+                  <span>292 S 1470 E #200, St. George, UT 84790</span>
+                </a>
               </div>
               <div>
                 <p className="text-sm font-semibold uppercase tracking-widest text-primary mb-1">
