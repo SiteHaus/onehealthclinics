@@ -2,6 +2,40 @@ import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
   pageExtensions: ["ts", "tsx", "md", "mdx"],
+  async redirects() {
+    return [
+      {
+        source: "/contact-us",
+        destination: "/contact",
+        permanent: true,
+      },
+      {
+        source: "/contact-us/",
+        destination: "/contact",
+        permanent: true,
+      },
+      {
+        source: "/specialty-services",
+        destination: "/services",
+        permanent: true,
+      },
+      {
+        source: "/specialty-services/",
+        destination: "/services",
+        permanent: true,
+      },
+      {
+        source: "/vitamins",
+        destination: "/shop",
+        permanent: true,
+      },
+      {
+        source: "/vitamins/",
+        destination: "/shop",
+        permanent: true,
+      },
+    ];
+  },
   async rewrites() {
     return [
       {

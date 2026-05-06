@@ -2,7 +2,7 @@
 
 import { submitContactForm, type ContactFormState } from "./actions";
 import { useActionState } from "react";
-import { FaSearchLocation } from "react-icons/fa";
+import { MapPin } from "lucide-react";
 
 const initialState: ContactFormState = { status: "idle" };
 
@@ -45,7 +45,12 @@ export default function ContactPage() {
                 <p className="text-sm font-semibold uppercase tracking-widest text-primary mb-1">
                   Phone
                 </p>
-                <p className="text-gray-700 text-lg">(435) 688-0759</p>
+                <a
+                  href="tel:4356880759"
+                  className="text-gray-700 text-lg hover:text-primary transition-colors"
+                >
+                  (435) 688-0759
+                </a>
               </div>
               <div>
                 <p className="text-sm font-semibold uppercase tracking-widest text-primary mb-1">
@@ -63,7 +68,7 @@ export default function ContactPage() {
                   rel="noopener noreferrer"
                   className="group inline-flex items-center gap-2 text-teal-700 underline underline-offset-2 hover:text-teal-900 cursor-pointer transition-colors duration-200"
                 >
-                  <FaSearchLocation className="shrink-0" />
+                  <MapPin className="shrink-0 h-4 w-4" />
                   <span>292 S 1470 E #200, St. George, UT 84790</span>
                 </a>
               </div>
@@ -83,7 +88,7 @@ export default function ContactPage() {
           </div>
 
           {/* Contact Form */}
-          <div className="flex flex-col gap-4">
+          <div id="book-appointment" className="flex flex-col gap-4">
             <div>
               <div className="w-10 h-1 bg-primary rounded-full mb-4" />
               <h2 className="text-2xl font-bold mb-6">Send Us a Message</h2>

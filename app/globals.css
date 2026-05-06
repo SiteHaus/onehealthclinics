@@ -183,6 +183,7 @@
   opacity: 1;
   transition: opacity 0.15s ease;
 }
+
 #search-wrapper.focused .sw-badge {
   opacity: 0;
 }
@@ -233,11 +234,13 @@
 }
 
 #search .pagefind-ui__search-clear,
+#search .pagefind-ui__search-cancel,
 #search button[type="submit"] {
   display: none !important;
 }
 
 #search .pagefind-ui__drawer {
+  display: none !important;
   position: absolute !important;
   left: 0 !important;
   right: 0 !important;
@@ -251,6 +254,11 @@
   padding: 4px !important;
   z-index: 55 !important;
   overflow: hidden !important;
+}
+
+#search-wrapper.focused #search .pagefind-ui__drawer:has(.pagefind-ui__result),
+#search-wrapper.focused #search .pagefind-ui__drawer:has(.pagefind-ui__message) {
+  display: block !important;
 }
 
 #search .pagefind-ui__result-link {

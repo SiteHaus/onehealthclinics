@@ -1,12 +1,23 @@
 "use client";
 
-import { Check } from "lucide-react";
+import { Check, Facebook, Instagram, Twitter } from "lucide-react";
 import { useRouter } from "next/navigation";
-import { FaFacebookF, FaInstagram, FaTwitter } from "react-icons/fa";
 import { Button } from "../ui/button";
+import { usePathname } from "next/navigation";
 
 export const Footer = () => {
+  const pathname = usePathname();
   const router = useRouter();
+
+  const handleBookClick = () => {
+    if (pathname === "/contact") {
+      document
+        .getElementById("book-appointment")
+        ?.scrollIntoView({ behavior: "smooth" });
+    } else {
+      router.push("/contact#book-appointment");
+    }
+  };
 
   return (
     <footer className="w-full bg-primary text-white py-12">
@@ -45,7 +56,7 @@ export const Footer = () => {
         {/* Right Section */}
         <div className="flex flex-col md:items-end lg:items-left items-center gap-4 mt-6 md:mt-0">
           <Button
-            onClick={() => router.push("/contact")}
+            onClick={handleBookClick}
             variant="outline"
             className="border-white text-primary hover:bg-white hover:text-primary w-fit px-6 py-4 rounded-xl"
           >
@@ -66,7 +77,7 @@ export const Footer = () => {
             target="_blank"
             rel="noopener noreferrer"
           >
-            <FaInstagram size={"25px"} />
+            <Instagram size={25} />
           </a>
 
           <a
@@ -74,7 +85,7 @@ export const Footer = () => {
             target="_blank"
             rel="noopener noreferrer"
           >
-            <FaFacebookF size={"25px"} />
+            <Facebook size={25} />
           </a>
 
           <a
@@ -82,7 +93,7 @@ export const Footer = () => {
             target="_blank"
             rel="noopener noreferrer"
           >
-            <FaTwitter size={"25px"} />
+            <Twitter size={25} />
           </a>
         </div>
         <div className="text-white/30 text-xs">
