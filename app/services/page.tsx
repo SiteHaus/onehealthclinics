@@ -7,6 +7,7 @@ import {
   CarouselNext,
   CarouselPrevious,
 } from "@/components/ui/carousel";
+import { ScrollArea, ScrollBar } from "@/components/ui/scroll-area";
 import { ArrowRight } from "lucide-react";
 
 // ─── Data ────────────────────────────────────────────────────────────────────
@@ -222,31 +223,34 @@ export default function ServicesPage() {
       </section>
 
       {/* ── Quick Nav ── */}
-      <section className="bg-white border-b border-gray-100 px-6 py-4 sticky top-16 z-20 shadow-sm">
-        <div className="max-w-5xl mx-auto flex flex-wrap gap-2">
-          {[
-            { label: "Primary Care", href: "#primary-care" },
-            { label: "Dermatology", href: "#dermatology" },
-            { label: "Women's Health", href: "#womens-health" },
-            { label: "Men's Health", href: "#mens-health" },
-            { label: "Birth Control", href: "#birth-control" },
-            { label: "Pediatric Care", href: "/pediatrics" },
-            { label: "Weight Loss", href: "#weight-loss" },
-            { label: "Hormone Therapy", href: "#hrt" },
-            { label: "NAD+ Infusions", href: "#nad-infusions" },
-            { label: "Vitamin Infusions", href: "#vitamin-infusions" },
-            { label: "Vitamin Injections", href: "#vitamin-injections" },
-            { label: "PRP Injections", href: "#prp" },
-          ].map((link) => (
-            <a
-              key={link.href}
-              href={link.href}
-              className="text-xs font-semibold uppercase tracking-widest text-gray-500 border border-gray-200 rounded-full px-3 py-1.5 hover:border-primary hover:text-primary transition-colors whitespace-nowrap"
-            >
-              {link.label}
-            </a>
-          ))}
-        </div>
+      <section className="bg-white border-b border-gray-100 py-3 sticky top-16 z-20 shadow-sm">
+        <ScrollArea className="w-full max-w-5xl mx-auto">
+          <div className="flex gap-2 px-6">
+            {[
+              { label: "Primary Care", href: "#primary-care" },
+              { label: "Dermatology", href: "#dermatology" },
+              { label: "Women's Health", href: "#womens-health" },
+              { label: "Men's Health", href: "#mens-health" },
+              { label: "Birth Control", href: "#birth-control" },
+              { label: "Pediatric Care", href: "/pediatrics" },
+              { label: "Weight Loss", href: "#weight-loss" },
+              { label: "Hormone Therapy", href: "#hrt" },
+              { label: "NAD+ Infusions", href: "#nad-infusions" },
+              { label: "Vitamin Infusions", href: "#vitamin-infusions" },
+              { label: "Vitamin Injections", href: "#vitamin-injections" },
+              { label: "PRP Injections", href: "#prp" },
+            ].map((link) => (
+              <a
+                key={link.href}
+                href={link.href}
+                className="text-xs font-semibold uppercase tracking-widest text-gray-500 border border-gray-200 rounded-full px-3 py-1.5 hover:border-primary hover:text-primary transition-colors whitespace-nowrap"
+              >
+                {link.label}
+              </a>
+            ))}
+          </div>
+          <ScrollBar orientation="horizontal" className="hidden" />
+        </ScrollArea>
       </section>
 
       {/* ── Clinic Services ── */}
