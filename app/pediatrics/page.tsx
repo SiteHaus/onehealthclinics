@@ -170,7 +170,7 @@ export default function PediatricsPage() {
             welcoming, family-focused environment.
           </p>
           <p className="text-white/40 text-sm mt-4">
-            Formerly Dixie Pediatrics · Same trusted team, same St. George home.
+            Formerly Dixie Primary Care · Same trusted team, same St. George home.
           </p>
         </div>
       </section>

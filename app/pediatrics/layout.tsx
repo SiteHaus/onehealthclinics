@@ -25,7 +25,7 @@ const physicianSchema = JSON.stringify({
 export const metadata: Metadata = {
   title: "Pediatric Care in St. George, UT",
   description:
-    "Formerly Dixie Pediatrics — now OneHealth Clinics. Expert pediatric care in St. George, Utah. Well-child visits, immunizations, sports physicals, and same-day urgent care for kids.",
+    "Formerly Dixie Primary Care (Dixie Pediatrics) — now OneHealth Clinics. Expert pediatric care in St. George, Utah. Well-child visits, immunizations, sports physicals, and same-day urgent care for kids.",
   keywords: [
     "pediatrics St. George Utah",
     "child doctor St. George",
