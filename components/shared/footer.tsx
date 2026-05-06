@@ -3,9 +3,21 @@
 import { Check, Facebook, Instagram, Twitter } from "lucide-react";
 import { useRouter } from "next/navigation";
 import { Button } from "../ui/button";
+import { usePathname } from "next/navigation";
 
 export const Footer = () => {
+  const pathname = usePathname();
   const router = useRouter();
+
+  const handleBookClick = () => {
+    if (pathname === "/contact") {
+      document
+        .getElementById("book-appointment")
+        ?.scrollIntoView({ behavior: "smooth" });
+    } else {
+      router.push("/contact#book-appointment");
+    }
+  };
 
   return (
     <footer className="w-full bg-primary text-white py-12">
@@ -44,7 +56,7 @@ export const Footer = () => {
         {/* Right Section */}
         <div className="flex flex-col md:items-end lg:items-left items-center gap-4 mt-6 md:mt-0">
           <Button
-            onClick={() => router.push("/contact#book-appointment")}
+            onClick={handleBookClick}
             variant="outline"
             className="border-white text-primary hover:bg-white hover:text-primary w-fit px-6 py-4 rounded-xl"
           >
