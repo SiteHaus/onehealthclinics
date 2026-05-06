@@ -95,20 +95,30 @@ export default function AboutPage() {
 
       {/* Quick Nav */}
       <section className="bg-white border-b border-gray-100 py-3 sticky top-16 z-20 shadow-sm">
-        <ScrollArea className="w-full max-w-5xl mx-auto">
-          <div className="flex gap-2 px-6">
-            {providers.map((p) => (
-              <a
-                key={p.slug}
-                href={`#${p.slug}`}
-                className="text-xs font-semibold uppercase tracking-widest text-gray-500 border border-gray-200 rounded-full px-3 py-1.5 hover:border-primary hover:text-primary transition-colors whitespace-nowrap"
-              >
-                {p.navLabel}
-              </a>
-            ))}
-          </div>
-          <ScrollBar orientation="horizontal" className="hidden" />
-        </ScrollArea>
+        {(() => {
+          const pillClass = "text-xs font-semibold uppercase tracking-widest text-gray-500 border border-gray-200 rounded-full px-3 py-1.5 hover:border-primary hover:text-primary transition-colors whitespace-nowrap";
+          return (
+            <>
+              {/* Mobile: horizontal scroll */}
+              <div className="lg:hidden">
+                <ScrollArea className="w-full">
+                  <div className="flex gap-2 px-6">
+                    {providers.map((p) => (
+                      <a key={p.slug} href={`#${p.slug}`} className={pillClass}>{p.navLabel}</a>
+                    ))}
+                  </div>
+                  <ScrollBar orientation="horizontal" className="hidden" />
+                </ScrollArea>
+              </div>
+              {/* Desktop: wrapping pills */}
+              <div className="hidden lg:flex flex-wrap gap-2 px-6 max-w-5xl mx-auto">
+                {providers.map((p) => (
+                  <a key={p.slug} href={`#${p.slug}`} className={pillClass}>{p.navLabel}</a>
+                ))}
+              </div>
+            </>
+          );
+        })()}
       </section>
 
       {/* Mission Section */}

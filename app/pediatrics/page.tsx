@@ -177,29 +177,40 @@ export default function PediatricsPage() {
 
       {/* Quick Nav */}
       <section className="bg-white border-b border-gray-100 py-3 sticky top-16 z-20 shadow-sm">
-        <ScrollArea className="w-full max-w-5xl mx-auto">
-          <div className="flex gap-2 px-6">
-            {[
-              { label: "Well Child Checks", href: "#well-child" },
-              { label: "Immunizations", href: "#immunizations" },
-              { label: "Same-Day Urgent Care", href: "#same-day" },
-              { label: "Sports Physicals", href: "#sports" },
-              { label: "Teen Health", href: "#teen" },
-              { label: "Circumcisions", href: "#circumcisions" },
-              { label: "Understanding Your Child", href: "#understanding" },
-              { label: "Development", href: "#development" },
-            ].map((link) => (
-              <a
-                key={link.href}
-                href={link.href}
-                className="text-xs font-semibold uppercase tracking-widest text-gray-500 border border-gray-200 rounded-full px-3 py-1.5 hover:border-primary hover:text-primary transition-colors whitespace-nowrap"
-              >
-                {link.label}
-              </a>
-            ))}
-          </div>
-          <ScrollBar orientation="horizontal" className="hidden" />
-        </ScrollArea>
+        {(() => {
+          const links = [
+            { label: "Well Child Checks", href: "#well-child" },
+            { label: "Immunizations", href: "#immunizations" },
+            { label: "Same-Day Urgent Care", href: "#same-day" },
+            { label: "Sports Physicals", href: "#sports" },
+            { label: "Teen Health", href: "#teen" },
+            { label: "Circumcisions", href: "#circumcisions" },
+            { label: "Understanding Your Child", href: "#understanding" },
+            { label: "Development", href: "#development" },
+          ];
+          const pillClass = "text-xs font-semibold uppercase tracking-widest text-gray-500 border border-gray-200 rounded-full px-3 py-1.5 hover:border-primary hover:text-primary transition-colors whitespace-nowrap";
+          return (
+            <>
+              {/* Mobile: horizontal scroll */}
+              <div className="lg:hidden">
+                <ScrollArea className="w-full">
+                  <div className="flex gap-2 px-6">
+                    {links.map((link) => (
+                      <a key={link.href} href={link.href} className={pillClass}>{link.label}</a>
+                    ))}
+                  </div>
+                  <ScrollBar orientation="horizontal" className="hidden" />
+                </ScrollArea>
+              </div>
+              {/* Desktop: wrapping pills */}
+              <div className="hidden lg:flex flex-wrap gap-2 px-6 max-w-5xl mx-auto">
+                {links.map((link) => (
+                  <a key={link.href} href={link.href} className={pillClass}>{link.label}</a>
+                ))}
+              </div>
+            </>
+          );
+        })()}
       </section>
 
       {/* Provider Section */}
