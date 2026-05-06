@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: "Services",
+  title: "Primary Care & Specialty Services in St. George, UT",
   description:
     "OneHealth Clinics offers primary care, dermatology, women's health, men's health, weight loss, hormone replacement therapy, NAD+ infusions, and more in St. George, Utah.",
   keywords: [
@@ -19,7 +19,7 @@ export const metadata: Metadata = {
     canonical: "https://onehealthclinics.com/services",
   },
   openGraph: {
-    title: "Services | OneHealth Clinics",
+    title: "Primary Care & Specialty Services in St. George, UT | OneHealth Clinics",
     description:
       "Comprehensive clinic and specialty services in St. George, Utah — primary care, dermatology, women's health, weight loss, HRT, infusions, and more.",
     url: "https://onehealthclinics.com/services",

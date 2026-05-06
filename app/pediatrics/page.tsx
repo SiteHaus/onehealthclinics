@@ -8,6 +8,8 @@ import {
   CarouselNext,
   CarouselPrevious,
 } from "@/components/ui/carousel";
+import { ScrollArea, ScrollBar } from "@/components/ui/scroll-area";
+import { ArrowRight } from "lucide-react";
 
 const developmentHandouts = [
   {
@@ -160,14 +162,44 @@ export default function PediatricsPage() {
             Pediatric Care
           </p>
           <h1 className="text-4xl md:text-5xl font-bold text-background mb-6">
-            Pediatrics
+            Pediatric Care in St. George, Utah
           </h1>
           <p className="max-w-2xl text-white/80 text-lg leading-relaxed">
-            From newborns to teens, we partner with families to support every
-            stage of your child's health and development — in a welcoming,
-            family-focused environment.
+            From newborns to teens, we partner with St. George families to
+            support every stage of your child's health and development — in a
+            welcoming, family-focused environment.
+          </p>
+          <p className="text-white/40 text-sm mt-4">
+            Formerly Dixie Pediatrics · Same trusted team, same St. George home.
           </p>
         </div>
+      </section>
+
+      {/* Quick Nav */}
+      <section className="bg-white border-b border-gray-100 py-3 sticky top-16 z-20 shadow-sm">
+        <ScrollArea className="w-full max-w-5xl mx-auto">
+          <div className="flex gap-2 px-6">
+            {[
+              { label: "Well Child Checks", href: "#well-child" },
+              { label: "Immunizations", href: "#immunizations" },
+              { label: "Same-Day Urgent Care", href: "#same-day" },
+              { label: "Sports Physicals", href: "#sports" },
+              { label: "Teen Health", href: "#teen" },
+              { label: "Circumcisions", href: "#circumcisions" },
+              { label: "Understanding Your Child", href: "#understanding" },
+              { label: "Development", href: "#development" },
+            ].map((link) => (
+              <a
+                key={link.href}
+                href={link.href}
+                className="text-xs font-semibold uppercase tracking-widest text-gray-500 border border-gray-200 rounded-full px-3 py-1.5 hover:border-primary hover:text-primary transition-colors whitespace-nowrap"
+              >
+                {link.label}
+              </a>
+            ))}
+          </div>
+          <ScrollBar orientation="horizontal" className="hidden" />
+        </ScrollArea>
       </section>
 
       {/* Provider Section */}
@@ -192,8 +224,8 @@ export default function PediatricsPage() {
               Originally from Bountiful, Utah, Dr. Turner trained at Des Moines
               University and Wesley Medical Center in Wichita, Kansas. He brings
               over a decade of primary care experience with a focus on pediatric
-              care and women's health. He and his wife are proud parents of five
-              wonderful children.
+              care and women's health. Now based in St. George, he and his wife
+              are proud parents of five wonderful children.
             </p>
           </div>
           <div className="rounded-2xl overflow-hidden shadow-md bg-gray-100 aspect-[3/4] flex items-center justify-center">
@@ -217,7 +249,8 @@ export default function PediatricsPage() {
             {services.map((service) => (
               <div
                 key={service.id}
-                className="bg-white rounded-2xl p-8 shadow-sm border border-gray-100 flex flex-col gap-3"
+                id={service.id}
+                className="bg-white rounded-2xl p-8 shadow-sm border border-gray-100 flex flex-col gap-3 scroll-mt-32"
               >
                 <p className="text-sm font-semibold uppercase tracking-widest text-primary">
                   {service.title}
@@ -235,7 +268,7 @@ export default function PediatricsPage() {
       <section className="bg-white text-gray-800 py-20 px-6">
         <div className="max-w-5xl mx-auto grid md:grid-cols-2 gap-16">
           {/* Screening Forms */}
-          <div className="flex flex-col gap-6">
+          <div id="understanding" className="flex flex-col gap-6 scroll-mt-32">
             <div>
               <div className="w-10 h-1 bg-primary rounded-full mb-4" />
               <h2 className="text-2xl font-bold mb-2">
@@ -260,7 +293,7 @@ export default function PediatricsPage() {
                   rel="noopener noreferrer"
                   className="text-primary font-medium text-sm hover:underline"
                 >
-                  Download Lead Exposure Questionnaire →
+                  Download Lead Exposure Questionnaire <ArrowRight className="h-3 w-3 inline" />
                 </a>
               </div>
               <div className="border border-gray-100 rounded-xl p-5 flex flex-col gap-1 shadow-sm">
@@ -276,14 +309,14 @@ export default function PediatricsPage() {
                   rel="noopener noreferrer"
                   className="text-primary font-medium text-sm hover:underline"
                 >
-                  Screen Your Child →
+                  Screen Your Child <ArrowRight className="h-3 w-3 inline" />
                 </a>
               </div>
             </div>
           </div>
 
           {/* Development Handouts */}
-          <div className="flex flex-col gap-6">
+          <div id="development" className="flex flex-col gap-6 scroll-mt-32">
             <div>
               <div className="w-10 h-1 bg-primary rounded-full mb-4" />
               <h2 className="text-2xl font-bold mb-2">Development Handouts</h2>

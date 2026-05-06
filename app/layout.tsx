@@ -91,9 +91,16 @@ const localBusinessSchema = JSON.stringify({
   image: `${siteUrl}/office.jpg`,
   address: {
     "@type": "PostalAddress",
+    streetAddress: "292 S 1470 E #200",
     addressLocality: "St. George",
     addressRegion: "UT",
+    postalCode: "84790",
     addressCountry: "US",
+  },
+  areaServed: {
+    "@type": "City",
+    name: "St. George",
+    sameAs: "https://en.wikipedia.org/wiki/St._George,_Utah",
   },
   geo: {
     "@type": "GeoCoordinates",

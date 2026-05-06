@@ -23,10 +23,10 @@ export const Navbar = ({ links }: NavbarProps) => {
             </span>
           </div>
         </Link>
-        <div className="hidden sm:block">
+        <div className="hidden lg:block">
           <NavbarLinkList links={links} />
         </div>
-        <div className="sm:hidden">
+        <div className="lg:hidden">
           <NavbarDropdown links={links} />
         </div>
       </div>

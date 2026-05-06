@@ -1,7 +1,7 @@
 "use client";
 
 import { useState, useEffect, useMemo } from "react";
-import { ShoppingCart, X, Plus, Minus, ChevronLeft, Loader2 } from "lucide-react";
+import { ShoppingCart, X, Plus, Minus, ChevronLeft, Loader2, ArrowRight } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
 import type { ProductDetail, PublicVariant, Cart, CartItem, Option } from "@/lib/ecom/types";
@@ -77,7 +77,7 @@ function CartDrawer({
               <ShoppingCart size={40} className="text-gray-200" />
               <p className="text-gray-400 text-sm">Your cart is empty.</p>
               <button onClick={onClose} className="text-primary text-sm font-semibold hover:underline">
-                Continue Shopping →
+                Continue Shopping <ArrowRight className="h-3 w-3 inline" />
               </button>
             </div>
           ) : (
@@ -442,7 +442,7 @@ export default function ProductDetailClient({ product }: { product: ProductDetai
                   onClick={() => setCartOpen(true)}
                   className="w-full text-center text-sm text-primary font-semibold hover:underline"
                 >
-                  View Cart →
+                  View Cart <ArrowRight className="h-3 w-3 inline" />
                 </button>
               )}
 

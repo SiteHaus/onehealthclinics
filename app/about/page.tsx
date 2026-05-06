@@ -1,20 +1,27 @@
 "use client";
 import { useRouter } from "next/navigation";
+import { ScrollArea, ScrollBar } from "@/components/ui/scroll-area";
 
 const providers = [
   {
+    slug: "grace-paradela",
+    navLabel: "Dr. Paradela",
     name: "Grace Paradela, M.D.",
     title: "Board Certified in Internal Medicine",
     bio: `Dr. Grace Paradela completed her medical studies in the Philippines. She graduated magna cum laude in BS Medical Technology as her undergraduate degree. Dr. Paradela interned at the Philippine General Hospital, which happens to be the largest tertiary referral hospital in the country. Dr. Paradela has worked in multiple rural areas of the country, working with pediatrics, minor surgery, family practice, and Obstetrics and gynecology. After fulfilling her residency in Internal Medicine in New Jersey, she moved to St. George in 2002.  She has been practicing acupuncture since 2006. She greatly values the integration of both western and eastern disciplines. Dr. Paradela is board-certified in Internal Medicine, board eligible in acupuncture and obesity medicine. She enjoys family time with her husband and her two sons and two furbabies. She enjoys poetry, landscape and flower photography,  bagmaking, karaoke and crime TV.`,
     image: "/grace.png",
   },
   {
+    slug: "jonathan-baza",
+    navLabel: "Dr. Baza",
     name: "Jonathan Baza, DO",
     title: "Board Certified in Family Medicine",
     bio: "Dr. Jonathan Baza is originally from Bountiful, Utah. His undergraduate degree was in Athletic Therapy, at Weber State University in Ogden Utah. He graduated from medical school in 2016 from Touro University Nevada. He completed a residency at Southeastern Health in Lumberton, North Carolina. Dr. Baza received his medical degree in Osteopathic Medicine and had residency training in Family Medicine. He uses Osteopathic Manipulative Treatments (OMT) to treat a variety of sports and chronic injuries. His medical interests include: sports medicine, dermatology, and women’s health. Dr. Baza is married and has three children. He and his family love playing games together and traveling, pickle ball, hiking and mountain biking.",
     image: "/baza.png",
   },
   {
+    slug: "carl-turner",
+    navLabel: "Dr. Turner",
     name: "Carl Turner, DO",
     title: "Board Certified in Family Medicine",
     bio: `Bringing smiles, stethoscopes, and sometimes balloon animals to the exam room, Dr. Turner is passionate about providing care in a welcoming, family-focused environment. From newborn checkups to well-woman exams to grandpa’s blood pressure, Dr. Turner enjoys caring for every member of the family.
@@ -23,6 +30,8 @@ Outside of the clinic, Dr. Turner loves watching and playing sports, spending ti
     image: "/turner.png",
   },
   {
+    slug: "stacy-sumpter",
+    navLabel: "Stacy Sumpter",
     name: "Stacy Sumpter, DNP-C",
     title: "Doctor of Nursing Practice, Board Certified Nurse Practitioner",
     bio: `Stacy Sumpter, DNP-C began her nursing career in 1994. Living in a rural community, she had the opportunity to work in multiple areas including obstetrics/gynecology, labor and delivery, intensive care unit, medical surgical in addition to home care and hospice. Stacy expanded her education earning a Master’s Degree in Nursing from Graceland University. She began working as a board-certified nurse practitioner in Southern Utah in 2005. Stacy earned her Doctor of Nursing Practice degree from the University of Nevada-Las Vegas in 2022. She took her first course in Bio-identical hormone replacement in 2009 which sparked a passion to learn more and she became certified in Advanced Bio-identical Hormone Replacement Therapy. Stacy believes that education, understanding and partnership are the key components to a successful patient relationship. Stacy enjoys working together to develop a personalized plan of care for health, prevention and disease management.
@@ -31,6 +40,8 @@ She is a member of the American Academy of Nurse Practitioners, Sigma Theta Tau 
     image: "/sumpter.png",
   },
   {
+    slug: "adam-dye",
+    navLabel: "Adam Dye",
     name: "Adam Dye, FNP-C",
     title:
       "Master’s Degree in Nursing, Board Certified Family Nurse Practitioner",
@@ -39,6 +50,8 @@ Adam enjoys serving his community and getting to know people individually. Adam 
     image: "/dye.png",
   },
   {
+    slug: "jacob-ewell",
+    navLabel: "Jacob Ewell",
     name: "Jacob Ewell, DNP-FNP",
     title: "Doctor of Nursing Practice, Certified Family Nurse Practitioner",
     bio: `Jacob Ewell grew up in Southern California. He received his bachelor’s in nursing at Brigham Young University-Idaho and worked as a registered nurse in the Neurological Critical Care Unit at the University of Utah hospital for five years. While working as an ICU nurse, he attended Weber State University where he graduated with his doctorate of nursing practice with an emphasis in family practice.
@@ -46,6 +59,8 @@ Jacob is passionate about providing preventive and holistic care to patients and
     image: "/ewell.png",
   },
   {
+    slug: "noah-yoshida",
+    navLabel: "Noah Yoshida",
     name: "Noah Yoshida, PA-C",
     title:
       "MPAS, PA-C (Master of Physician Assistant Studies, Board Certified Physician Assistant)",
@@ -68,14 +83,32 @@ export default function AboutPage() {
             Who We Are
           </p>
           <h1 className="text-4xl md:text-5xl font-bold text-background mb-6">
-            About OneHealth
+            Our Medical Team in St. George, Utah
           </h1>
           <p className="max-w-2xl text-white/80 text-lg leading-relaxed">
             We believe everyone deserves accessible, high-quality healthcare —
             with same-day appointments, new patients always welcome, and most
-            insurance accepted.
+            insurance accepted right here in Southern Utah.
           </p>
         </div>
+      </section>
+
+      {/* Quick Nav */}
+      <section className="bg-white border-b border-gray-100 py-3 sticky top-16 z-20 shadow-sm">
+        <ScrollArea className="w-full max-w-5xl mx-auto">
+          <div className="flex gap-2 px-6">
+            {providers.map((p) => (
+              <a
+                key={p.slug}
+                href={`#${p.slug}`}
+                className="text-xs font-semibold uppercase tracking-widest text-gray-500 border border-gray-200 rounded-full px-3 py-1.5 hover:border-primary hover:text-primary transition-colors whitespace-nowrap"
+              >
+                {p.navLabel}
+              </a>
+            ))}
+          </div>
+          <ScrollBar orientation="horizontal" className="hidden" />
+        </ScrollArea>
       </section>
 
       {/* Mission Section */}
@@ -120,9 +153,10 @@ export default function AboutPage() {
               return (
                 <div
                   key={provider.name}
+                  id={provider.slug}
                   className={`flex flex-col md:flex-row ${
                     isEven ? "" : "md:flex-row-reverse"
-                  } items-center gap-10`}
+                  } items-center gap-10 scroll-mt-28`}
                 >
                   <div className="w-full md:w-2/5 shrink-0 h-[450px] md:h-[500px]">
                     {" "}
