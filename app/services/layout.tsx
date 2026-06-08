@@ -1,5 +1,7 @@
 import type { Metadata } from "next";
 
+export const revalidate = 86400;
+
 export const metadata: Metadata = {
   title: "Primary Care & Specialty Services in St. George, UT",
   description:
