@@ -77,6 +77,19 @@ Both server-only — no `NEXT_PUBLIC_` prefix.
 - Empty reviews array → return `null`
 - No loading states needed — server component renders complete or not at all
 
+## Page-Level ISR
+
+Add `export const revalidate = 86400` to the following pages. This pre-renders the full page on Vercel and serves cached HTML, improving TTFB and LCP. Content is stale-while-revalidated — pages rebuild in the background every 24 hours without user-facing downtime.
+
+Pages to update:
+- `app/page.tsx`
+- `app/about/page.tsx`
+- `app/pediatrics/page.tsx`
+- `app/services/page.tsx`
+- `app/contact/page.tsx`
+
+Note: the `revalidate` value on the reviews `fetch()` and the page-level `revalidate` export are independent. Both should be 86400 so the page and its data cache expire on the same cadence.
+
 ## Out of Scope
 - Review filtering by doctor or service (Places API only returns 5 reviews with no doctor/service metadata)
 - Manual/curated testimonials
