@@ -1,12 +1,12 @@
-"use client";
-
 import { Banner } from "@/components/shared/banner";
-import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Bolt } from "lucide-react";
-import { useRouter } from "next/navigation";
+import { HomeHeroButtons } from "@/components/home-hero-buttons";
+import GoogleReviews from "@/components/google-reviews";
+
+export const revalidate = 86400;
+
 export default function Home() {
-  const router = useRouter();
   return (
     <>
       {/* Hero Section */}
@@ -26,29 +26,12 @@ export default function Home() {
                 family — right here in Southern Utah.
               </p>
 
-              <div className="flex flex-wrap gap-3 mt-7">
-                <Button
-                  onClick={() => router.push("/contact")}
-                  className="w-fit px-8 py-5 text-base rounded-xl"
-                >
-                  Contact our Office (New Patient)
-                </Button>
-                <Button
-                  className="w-fit px-8 py-5 text-base rounded-xl"
-                  onClick={() =>
-                    window.open(
-                      "https://mycw18.eclinicalweb.com/portal1225/jsp/100mp/login_otp.jsp",
-                      "_blank",
-                    )
-                  }
-                >
-                  Patient Portal (Existing Patients)
-                </Button>
-              </div>
+              <HomeHeroButtons />
             </div>
           </div>
         </div>
       </section>
+
       {/* Section BELOW hero */}
       <section>
         <Banner
@@ -56,7 +39,8 @@ export default function Home() {
           content="Dixie Primary Care is now OneHealth Clinics — same trusted team, expanded care."
         />
       </section>
-      <div className="bg-white ">
+
+      <div className="bg-white">
         <section className="w-full py-24">
           <div className="flex flex-col max-w-6xl mx-auto gap-6 px-6">
             <p className="text-sm font-semibold text-primary uppercase tracking-widest">
@@ -80,18 +64,14 @@ export default function Home() {
         </section>
         <section className="bg-gray-50 w-full py-24">
           <div className="flex flex-col max-w-6xl mx-auto gap-12 px-6">
-            {/* Title */}
             <div className="w-full text-center">
               <h2 className="text-sm font-semibold text-primary">
                 OUR PHILOSOPHY
               </h2>
-
               <h1 className="font-bold mt-4 text-4xl md:text-5xl lg:text-6xl">
                 Why OneHealth?
               </h1>
             </div>
-
-            {/* Cards */}
             <div className="flex flex-col md:flex-row justify-center items-center lg:items-stretch gap-8">
               <Card className="flex-1 flex flex-col bg-white rounded-xl border border-gray-100 shadow-sm hover:shadow-md hover:-translate-y-1 transition-all duration-300">
                 <CardHeader className="flex flex-col gap-4">
@@ -102,7 +82,6 @@ export default function Home() {
                     All-in-one care
                   </CardTitle>
                 </CardHeader>
-
                 <CardContent className="flex-1">
                   <p className="text-muted-foreground leading-relaxed">
                     Primary care, specialized wellness, and functional medicine
@@ -119,7 +98,6 @@ export default function Home() {
                     Your medical home
                   </CardTitle>
                 </CardHeader>
-
                 <CardContent className="flex-1">
                   <p className="text-muted-foreground leading-relaxed">
                     Primary care, specialized wellness, and functional medicine
@@ -136,7 +114,6 @@ export default function Home() {
                     Built for growth
                   </CardTitle>
                 </CardHeader>
-
                 <CardContent className="flex-1">
                   <p className="text-muted-foreground leading-relaxed">
                     Evolved to meet the complexity of modern health needs across
@@ -148,6 +125,8 @@ export default function Home() {
           </div>
         </section>
       </div>
+
+      <GoogleReviews count={3} />
     </>
   );
 }
