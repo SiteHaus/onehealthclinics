@@ -1,6 +1,7 @@
-"use client";
-import { useRouter } from "next/navigation";
 import { ScrollArea, ScrollBar } from "@/components/ui/scroll-area";
+import GoogleReviews from "@/components/google-reviews";
+
+export const revalidate = 86400;
 
 const providers = [
   {
@@ -72,8 +73,6 @@ Jacob is passionate about providing preventive and holistic care to patients and
 ];
 
 export default function AboutPage() {
-  const router = useRouter();
-
   return (
     <div className="w-full text-white">
       {/* Hero Section */}
@@ -199,6 +198,7 @@ export default function AboutPage() {
           </div>
         </div>
       </section>
+      <GoogleReviews />
     </div>
   );
 }
