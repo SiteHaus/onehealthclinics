@@ -1,14 +1,14 @@
 import { Star } from "lucide-react";
 
 interface AuthorAttribution {
-  displayName: string;
-  photoUri: string;
-  uri: string;
+  displayName?: string;
+  photoUri?: string;
+  uri?: string;
 }
 
 interface Review {
   rating: number;
-  text: { text: string };
+  text?: { text: string };
   authorAttribution: AuthorAttribution;
   relativePublishTimeDescription: string;
 }
@@ -69,7 +69,7 @@ export default async function GoogleReviews({ count = 5 }: GoogleReviewsProps) {
 
   const placeId = process.env.GOOGLE_PLACE_ID;
   const mapsUrl = `https://www.google.com/maps/place/?q=place_id:${placeId}`;
-  const reviews = data.reviews.slice(0, count);
+  const reviews = data.reviews.filter((r) => r.text?.text).slice(0, count);
 
   return (
     <section className="bg-hero-bg py-24 px-6">
@@ -103,15 +103,17 @@ export default async function GoogleReviews({ count = 5 }: GoogleReviewsProps) {
               className="bg-white/10 border border-white/15 rounded-xl p-6 flex flex-col gap-4"
             >
               <div className="flex items-center gap-3">
-                <img
-                  src={review.authorAttribution.photoUri}
-                  alt={review.authorAttribution.displayName}
-                  className="w-10 h-10 rounded-full"
-                  referrerPolicy="no-referrer"
-                />
+                {review.authorAttribution.photoUri && (
+                  <img
+                    src={review.authorAttribution.photoUri}
+                    alt={review.authorAttribution.displayName ?? "Google Reviewer"}
+                    className="w-10 h-10 rounded-full"
+                    referrerPolicy="no-referrer"
+                  />
+                )}
                 <div>
                   <p className="font-semibold text-sm text-white">
-                    {review.authorAttribution.displayName}
+                    {review.authorAttribution.displayName ?? "Google Reviewer"}
                   </p>
                   <p className="text-xs text-white/50">
                     {review.relativePublishTimeDescription}
@@ -120,7 +122,7 @@ export default async function GoogleReviews({ count = 5 }: GoogleReviewsProps) {
               </div>
               <StarRating rating={review.rating} />
               <p className="text-sm text-white/75 leading-relaxed line-clamp-5">
-                {review.text.text}
+                {review.text?.text}
               </p>
             </div>
           ))}
