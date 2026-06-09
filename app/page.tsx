@@ -2,7 +2,6 @@ import { Banner } from "@/components/shared/banner";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Bolt } from "lucide-react";
 import { HomeHeroButtons } from "@/components/home-hero-buttons";
-import GoogleReviews from "@/components/google-reviews";
 
 export const revalidate = 86400;
 
@@ -126,7 +125,6 @@ export default function Home() {
         </section>
       </div>
 
-      <GoogleReviews count={3} />
     </>
   );
 }

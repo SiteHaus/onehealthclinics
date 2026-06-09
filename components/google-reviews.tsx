@@ -19,11 +19,50 @@ interface PlaceData {
   reviews: Review[];
 }
 
+const MOCK_DATA: PlaceData = {
+  rating: 4.9,
+  userRatingCount: 248,
+  reviews: [
+    {
+      rating: 5,
+      text: { text: "Dr. Turner is amazing with my kids. Always patient, thorough, and explains everything clearly. We never feel rushed." },
+      authorAttribution: { displayName: "Sarah M." },
+      relativePublishTimeDescription: "2 weeks ago",
+    },
+    {
+      rating: 5,
+      text: { text: "Same-day appointment saved us a trip to urgent care. The staff was incredibly kind and the doctor was very knowledgeable." },
+      authorAttribution: { displayName: "James R." },
+      relativePublishTimeDescription: "1 month ago",
+    },
+    {
+      rating: 5,
+      text: { text: "Best primary care clinic in Southern Utah. They actually take the time to listen. We've been coming here for years and won't go anywhere else." },
+      authorAttribution: { displayName: "Lisa K." },
+      relativePublishTimeDescription: "3 weeks ago",
+    },
+    {
+      rating: 5,
+      text: { text: "Switched to OneHealth after our last doctor retired and couldn't be happier. Friendly front desk, short wait times, great care." },
+      authorAttribution: { displayName: "Tom W." },
+      relativePublishTimeDescription: "2 months ago",
+    },
+    {
+      rating: 5,
+      text: { text: "They fit my daughter in for a sports physical on short notice before her soccer season. Super grateful for the flexibility." },
+      authorAttribution: { displayName: "Rachel N." },
+      relativePublishTimeDescription: "1 month ago",
+    },
+  ],
+};
+
 async function fetchReviews(): Promise<PlaceData | null> {
   const apiKey = process.env.GOOGLE_PLACES_API_KEY;
   const placeId = process.env.GOOGLE_PLACE_ID;
 
-  if (!apiKey || !placeId) return null;
+  const isDev = process.env.NODE_ENV === "development";
+
+  if (!apiKey || !placeId) return isDev ? MOCK_DATA : null;
 
   try {
     const res = await fetch(
@@ -36,10 +75,10 @@ async function fetchReviews(): Promise<PlaceData | null> {
         next: { revalidate: 86400 },
       }
     );
-    if (!res.ok) return null;
+    if (!res.ok) return isDev ? MOCK_DATA : null;
     return res.json();
   } catch {
-    return null;
+    return isDev ? MOCK_DATA : null;
   }
 }
 

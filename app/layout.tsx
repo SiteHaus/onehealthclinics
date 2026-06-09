@@ -1,4 +1,5 @@
 import { Footer } from "@/components/shared/footer";
+import GoogleReviews from "@/components/google-reviews";
 import { Navbar } from "@/components/shared/navigation/Navbar";
 import { NavbarLinkType } from "@/components/shared/navigation/NavbarLink";
 import type { Metadata } from "next";
@@ -145,6 +146,7 @@ export default function RootLayout({
       <body className={`${funnel_display.className} antialiased`}>
         <Navbar links={mainLinks} />
         {children}
+        <GoogleReviews />
         <Footer />
       </body>
     </html>
