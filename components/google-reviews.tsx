@@ -103,7 +103,9 @@ interface GoogleReviewsProps {
 }
 
 export default async function GoogleReviews({ count = 5 }: GoogleReviewsProps) {
+  console.log("[GoogleReviews] rendering, NODE_ENV:", process.env.NODE_ENV);
   const data = await fetchReviews();
+  console.log("[GoogleReviews] data:", data ? `${data.reviews?.length} reviews` : "null");
   if (!data?.reviews?.length) return null;
 
   const placeId = process.env.GOOGLE_PLACE_ID;
