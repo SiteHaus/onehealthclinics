@@ -1,0 +1,95 @@
+<h2>Show the overall rating in the header?</h2>
+<p class="subtitle">How the top of the dark teal section looks — both options use the same cards below.</p>
+
+<div class="cards">
+
+  <div class="card" data-choice="a" onclick="toggleSelect(this)">
+    <div class="card-image">
+      <div style="background:#0f4c45;padding:20px 24px 16px;font-family:sans-serif;">
+        <div style="font-size:9px;font-weight:700;letter-spacing:2px;color:#5eead4;text-transform:uppercase;margin-bottom:8px;">Patient Reviews</div>
+        <div style="font-size:20px;font-weight:700;color:white;margin-bottom:14px;">What Our Patients Say</div>
+        <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:8px;">
+          <div style="background:rgba(255,255,255,0.08);border:1px solid rgba(255,255,255,0.12);border-radius:10px;padding:12px;">
+            <div style="display:flex;align-items:center;gap:6px;margin-bottom:7px;">
+              <div style="width:24px;height:24px;border-radius:50%;background:rgba(255,255,255,0.2);"></div>
+              <div style="font-size:9px;font-weight:600;color:white;">Sarah M.</div>
+            </div>
+            <div style="color:#FBBC04;font-size:9px;margin-bottom:5px;">★★★★★</div>
+            <div style="font-size:9px;color:rgba(255,255,255,0.75);line-height:1.5;">Dr. Turner is amazing with my kids. Always patient and thorough.</div>
+          </div>
+          <div style="background:rgba(255,255,255,0.08);border:1px solid rgba(255,255,255,0.12);border-radius:10px;padding:12px;">
+            <div style="display:flex;align-items:center;gap:6px;margin-bottom:7px;">
+              <div style="width:24px;height:24px;border-radius:50%;background:rgba(255,255,255,0.2);"></div>
+              <div style="font-size:9px;font-weight:600;color:white;">James R.</div>
+            </div>
+            <div style="color:#FBBC04;font-size:9px;margin-bottom:5px;">★★★★★</div>
+            <div style="font-size:9px;color:rgba(255,255,255,0.75);line-height:1.5;">Same-day appointment saved us. Staff was incredibly kind.</div>
+          </div>
+          <div style="background:rgba(255,255,255,0.08);border:1px solid rgba(255,255,255,0.12);border-radius:10px;padding:12px;">
+            <div style="display:flex;align-items:center;gap:6px;margin-bottom:7px;">
+              <div style="width:24px;height:24px;border-radius:50%;background:rgba(255,255,255,0.2);"></div>
+              <div style="font-size:9px;font-weight:600;color:white;">Lisa K.</div>
+            </div>
+            <div style="color:#FBBC04;font-size:9px;margin-bottom:5px;">★★★★★</div>
+            <div style="font-size:9px;color:rgba(255,255,255,0.75);line-height:1.5;">Best primary care in Southern Utah. Highly recommend.</div>
+          </div>
+        </div>
+        <div style="margin-top:10px;text-align:right;font-size:8px;color:rgba(255,255,255,0.35);">Powered by Google</div>
+      </div>
+    </div>
+    <div class="card-body">
+      <h3>A — Clean heading only</h3>
+      <p>Just the eyebrow label and section title. Simple, lets the reviews speak for themselves.</p>
+    </div>
+  </div>
+
+  <div class="card" data-choice="b" onclick="toggleSelect(this)">
+    <div class="card-image">
+      <div style="background:#0f4c45;padding:20px 24px 16px;font-family:sans-serif;">
+        <div style="display:flex;align-items:flex-start;justify-content:space-between;margin-bottom:14px;">
+          <div>
+            <div style="font-size:9px;font-weight:700;letter-spacing:2px;color:#5eead4;text-transform:uppercase;margin-bottom:8px;">Patient Reviews</div>
+            <div style="font-size:20px;font-weight:700;color:white;">What Our Patients Say</div>
+          </div>
+          <div style="text-align:center;background:rgba(255,255,255,0.08);border:1px solid rgba(255,255,255,0.12);border-radius:10px;padding:10px 14px;">
+            <div style="font-size:24px;font-weight:800;color:white;line-height:1;">4.9</div>
+            <div style="color:#FBBC04;font-size:11px;margin:3px 0;">★★★★★</div>
+            <div style="font-size:8px;color:rgba(255,255,255,0.5);">248 reviews</div>
+          </div>
+        </div>
+        <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:8px;">
+          <div style="background:rgba(255,255,255,0.08);border:1px solid rgba(255,255,255,0.12);border-radius:10px;padding:12px;">
+            <div style="display:flex;align-items:center;gap:6px;margin-bottom:7px;">
+              <div style="width:24px;height:24px;border-radius:50%;background:rgba(255,255,255,0.2);"></div>
+              <div style="font-size:9px;font-weight:600;color:white;">Sarah M.</div>
+            </div>
+            <div style="color:#FBBC04;font-size:9px;margin-bottom:5px;">★★★★★</div>
+            <div style="font-size:9px;color:rgba(255,255,255,0.75);line-height:1.5;">Dr. Turner is amazing with my kids. Always patient and thorough.</div>
+          </div>
+          <div style="background:rgba(255,255,255,0.08);border:1px solid rgba(255,255,255,0.12);border-radius:10px;padding:12px;">
+            <div style="display:flex;align-items:center;gap:6px;margin-bottom:7px;">
+              <div style="width:24px;height:24px;border-radius:50%;background:rgba(255,255,255,0.2);"></div>
+              <div style="font-size:9px;font-weight:600;color:white;">James R.</div>
+            </div>
+            <div style="color:#FBBC04;font-size:9px;margin-bottom:5px;">★★★★★</div>
+            <div style="font-size:9px;color:rgba(255,255,255,0.75);line-height:1.5;">Same-day appointment saved us. Staff was incredibly kind.</div>
+          </div>
+          <div style="background:rgba(255,255,255,0.08);border:1px solid rgba(255,255,255,0.12);border-radius:10px;padding:12px;">
+            <div style="display:flex;align-items:center;gap:6px;margin-bottom:7px;">
+              <div style="width:24px;height:24px;border-radius:50%;background:rgba(255,255,255,0.2);"></div>
+              <div style="font-size:9px;font-weight:600;color:white;">Lisa K.</div>
+            </div>
+            <div style="color:#FBBC04;font-size:9px;margin-bottom:5px;">★★★★★</div>
+            <div style="font-size:9px;color:rgba(255,255,255,0.75);line-height:1.5;">Best primary care in Southern Utah. Highly recommend.</div>
+          </div>
+        </div>
+        <div style="margin-top:10px;text-align:right;font-size:8px;color:rgba(255,255,255,0.35);">Powered by Google</div>
+      </div>
+    </div>
+    <div class="card-body">
+      <h3>B — Heading + rating badge</h3>
+      <p>Overall score and review count displayed top-right. Stronger trust signal — 4.9 stars is a number worth showing off.</p>
+    </div>
+  </div>
+
+</div>

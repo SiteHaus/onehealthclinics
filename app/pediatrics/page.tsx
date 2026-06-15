@@ -1,13 +1,5 @@
 "use client";
 
-import { useState, useEffect, useRef } from "react";
-import {
-  Carousel,
-  CarouselContent,
-  CarouselItem,
-  CarouselNext,
-  CarouselPrevious,
-} from "@/components/ui/carousel";
 import { ScrollArea, ScrollBar } from "@/components/ui/scroll-area";
 import { ArrowRight } from "lucide-react";
 
@@ -129,29 +121,6 @@ const services = [
   },
 ];
 
-const mediaItems = [
-  {
-    type: "video",
-    src: "/videos/pediatrics.mov",
-    caption: "A look inside our pediatrics clinic",
-  },
-  {
-    type: "image",
-    src: "/pedpoint.jpg",
-    caption: "Our welcoming exam rooms",
-  },
-  {
-    type: "image",
-    src: "/gumball.jpg",
-    caption: "Family-focused care",
-  },
-  {
-    type: "image",
-    src: "/tada.jpg",
-    caption: "A space kids feel comfortable in",
-  },
-];
-
 export default function PediatricsPage() {
   return (
     <div className="w-full text-white">
@@ -159,10 +128,10 @@ export default function PediatricsPage() {
       <section className="bg-hero-bg py-20 px-6">
         <div className="max-w-5xl mx-auto">
           <p className="text-secondary font-semibold uppercase tracking-widest text-sm mb-3">
-            Pediatric Care
+            Pediatric & Teen Care
           </p>
           <h1 className="text-4xl md:text-5xl font-bold text-background mb-6">
-            Pediatric Care in St. George, Utah
+            Pediatric & Teen Care in St. George, Utah
           </h1>
           <p className="max-w-2xl text-white/80 text-lg leading-relaxed">
             From newborns to teens, we partner with St. George families to
@@ -170,7 +139,8 @@ export default function PediatricsPage() {
             welcoming, family-focused environment.
           </p>
           <p className="text-white/40 text-sm mt-4">
-            Formerly Dixie Primary Care · Same trusted team, same St. George home.
+            Formerly Dixie Primary Care · Same trusted team, same St. George
+            home.
           </p>
         </div>
       </section>
@@ -188,7 +158,8 @@ export default function PediatricsPage() {
             { label: "Understanding Your Child", href: "#understanding" },
             { label: "Development", href: "#development" },
           ];
-          const pillClass = "text-xs font-semibold uppercase tracking-widest text-gray-500 border border-gray-200 rounded-full px-3 py-1.5 hover:border-primary hover:text-primary transition-colors whitespace-nowrap";
+          const pillClass =
+            "text-xs font-semibold uppercase tracking-widest text-gray-500 border border-gray-200 rounded-full px-3 py-1.5 hover:border-primary hover:text-primary transition-colors whitespace-nowrap";
           return (
             <>
               {/* Mobile: horizontal scroll */}
@@ -196,7 +167,9 @@ export default function PediatricsPage() {
                 <ScrollArea className="w-full">
                   <div className="flex gap-2 px-6">
                     {links.map((link) => (
-                      <a key={link.href} href={link.href} className={pillClass}>{link.label}</a>
+                      <a key={link.href} href={link.href} className={pillClass}>
+                        {link.label}
+                      </a>
                     ))}
                   </div>
                   <ScrollBar orientation="horizontal" className="hidden" />
@@ -205,7 +178,9 @@ export default function PediatricsPage() {
               {/* Desktop: wrapping pills */}
               <div className="hidden lg:flex flex-wrap gap-2 px-6 max-w-5xl mx-auto">
                 {links.map((link) => (
-                  <a key={link.href} href={link.href} className={pillClass}>{link.label}</a>
+                  <a key={link.href} href={link.href} className={pillClass}>
+                    {link.label}
+                  </a>
                 ))}
               </div>
             </>
@@ -304,7 +279,8 @@ export default function PediatricsPage() {
                   rel="noopener noreferrer"
                   className="text-primary font-medium text-sm hover:underline"
                 >
-                  Download Lead Exposure Questionnaire <ArrowRight className="h-3 w-3 inline" />
+                  Download Lead Exposure Questionnaire{" "}
+                  <ArrowRight className="h-3 w-3 inline" />
                 </a>
               </div>
               <div className="border border-gray-100 rounded-xl p-5 flex flex-col gap-1 shadow-sm">
@@ -352,53 +328,6 @@ export default function PediatricsPage() {
         </div>
       </section>
 
-      {/* Media Carousel Section */}
-      <section className="bg-gray-50 text-gray-800 py-20 px-6">
-        <div className="max-w-5xl mx-auto">
-          <div className="mb-12">
-            <div className="w-10 h-1 bg-primary rounded-full mb-4" />
-            <h2 className="text-2xl font-bold">Inside Our Clinic</h2>
-            <p className="text-gray-600 text-sm mt-2">
-              Take a look at the space where your family's care happens.
-            </p>
-          </div>
-
-          <Carousel opts={{ align: "start", loop: true }} className="w-full">
-            <CarouselContent className="-ml-4">
-              {mediaItems.map((item, index) => (
-                <CarouselItem
-                  key={index}
-                  className="pl-4 md:basis-3/4 lg:basis-2/3"
-                >
-                  <div className="rounded-2xl overflow-hidden bg-black shadow-md aspect-video flex items-center justify-center">
-                    {item.type === "video" ? (
-                      <video
-                        src={item.src}
-                        controls
-                        className="w-full h-full object-cover"
-                        playsInline
-                      />
-                    ) : (
-                      <img
-                        src={item.src}
-                        alt={item.caption}
-                        className="w-full h-full object-cover"
-                      />
-                    )}
-                  </div>
-                  <p className="text-sm text-gray-500 mt-3 text-center">
-                    {item.caption}
-                  </p>
-                </CarouselItem>
-              ))}
-            </CarouselContent>
-            <div className="flex justify-center gap-4 mt-8">
-              <CarouselPrevious className="static translate-y-0" />
-              <CarouselNext className="static translate-y-0" />
-            </div>
-          </Carousel>
-        </div>
-      </section>
     </div>
   );
 }
