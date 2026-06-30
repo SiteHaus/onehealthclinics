@@ -4,6 +4,7 @@ import { Navbar } from "@/components/shared/navigation/Navbar";
 import { NavbarLinkType } from "@/components/shared/navigation/NavbarLink";
 import type { Metadata } from "next";
 import { Funnel_Display } from "next/font/google";
+import { Analytics } from "@vercel/analytics/next";
 import "./globals.css";
 
 const funnel_display = Funnel_Display({
@@ -148,6 +149,7 @@ export default function RootLayout({
         {children}
         <GoogleReviews />
         <Footer />
+        <Analytics />
       </body>
     </html>
   );
