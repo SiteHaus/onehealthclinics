@@ -147,12 +147,12 @@
 #search-wrapper {
   position: relative;
   width: 220px;
-  display: flex; /* add this */
-  align-items: center; /* add this */
-  transition: width 0.2s ease;
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
 }
 #search-wrapper.focused {
-  width: 280px;
+  z-index: 60;
 }
 
 #search-wrapper .sw-icon {
@@ -200,6 +200,11 @@
 }
 #search {
   position: relative;
+  width: 100%;
+  transition: width 0.2s ease;
+}
+#search-wrapper.focused #search {
+  width: 320px;
 }
 #search .pagefind-ui__form {
   margin: 0 !important;

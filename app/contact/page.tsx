@@ -3,6 +3,7 @@
 import { submitContactForm, type ContactFormState } from "./actions";
 import { useActionState } from "react";
 import { MapPin } from "lucide-react";
+import { Turnstile } from "@marsidev/react-turnstile";
 
 const initialState: ContactFormState = { status: "idle" };
 
@@ -88,7 +89,7 @@ export default function ContactPage() {
           </div>
 
           {/* Contact Form */}
-          <div id="book-appointment" className="flex flex-col gap-4">
+          <div id="book-appointment" className="flex flex-col gap-4 scroll-mt-24">
             <div>
               <div className="w-10 h-1 bg-primary rounded-full mb-4" />
               <h2 className="text-2xl font-bold mb-6">Send Us a Message</h2>
@@ -105,6 +106,16 @@ export default function ContactPage() {
               </div>
             ) : (
               <form action={action} className="flex flex-col gap-4">
+                {/* Honeypot — hidden from humans, bots fill it */}
+                <input
+                  name="_gotcha"
+                  type="text"
+                  tabIndex={-1}
+                  aria-hidden="true"
+                  autoComplete="off"
+                  className="absolute -left-[9999px] opacity-0 pointer-events-none"
+                />
+
                 <div className="grid grid-cols-2 gap-4">
                   <div className="flex flex-col gap-1">
                     <label className="text-sm font-medium text-gray-600">
@@ -168,6 +179,11 @@ export default function ContactPage() {
                     className="border border-gray-200 rounded-lg px-4 py-3 text-gray-800 focus:outline-none focus:ring-2 focus:ring-primary resize-none"
                   />
                 </div>
+
+                <Turnstile
+                  siteKey={process.env.NEXT_PUBLIC_TURNSTILE_SITE_KEY ?? "1x00000000000000000000AA"}
+                  options={{ theme: "light", size: "normal" }}
+                />
 
                 {state.status === "error" && (
                   <p className="text-sm text-red-500">{state.message}</p>

@@ -9,10 +9,38 @@ export type ContactFormState =
   | { status: "success" }
   | { status: "error"; message: string };
 
+async function verifyTurnstile(token: string): Promise<boolean> {
+  const secret = process.env.TURNSTILE_SECRET_KEY;
+  if (!secret) return true; // skip verification if not configured (dev)
+
+  const res = await fetch(
+    "https://challenges.cloudflare.com/turnstile/v0/siteverify",
+    {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ secret, response: token }),
+    },
+  );
+  const data = await res.json();
+  return data.success === true;
+}
+
 export async function submitContactForm(
   _prev: ContactFormState,
   formData: FormData,
 ): Promise<ContactFormState> {
+  // Honeypot: bots fill this, humans don't
+  if (formData.get("_gotcha")?.toString()) {
+    return { status: "success" }; // silent drop
+  }
+
+  // Turnstile verification
+  const turnstileToken = formData.get("cf-turnstile-response")?.toString() ?? "";
+  const isHuman = await verifyTurnstile(turnstileToken);
+  if (!isHuman) {
+    return { status: "error", message: "Verification failed. Please try again." };
+  }
+
   const firstName = formData.get("firstName")?.toString().trim() ?? "";
   const lastName = formData.get("lastName")?.toString().trim() ?? "";
   const email = formData.get("email")?.toString().trim() ?? "";
