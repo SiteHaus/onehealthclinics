@@ -61,7 +61,7 @@ export default function WeightLossPage() {
           </div>
           <div className="w-full md:w-2/5 rounded-2xl overflow-hidden shadow-md aspect-[4/3] flex-shrink-0">
             <img
-              src="/weight.png"
+              src="/weight.jpg"
               alt="Medical weight loss program in St. George, Utah"
               className="w-full h-full object-cover"
             />
