@@ -540,11 +540,6 @@ Expected: no errors.
 
 - [ ] **Commit**
 
-```bash
-git add app/pediatrics/layout.tsx app/services/layout.tsx app/contact/layout.tsx
-git commit -m "perf: add ISR revalidate to pediatrics, services, and contact layouts"
-```
-
 ---
 
 ## Task 6: Wire up env vars and smoke test

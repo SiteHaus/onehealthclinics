@@ -291,38 +291,6 @@ export default function ServicesPage() {
         </div>
       </section>
 
-      {/* ── Pediatric Care Callout ── */}
-      <section className="bg-white px-6 pb-20">
-        <div className="max-w-5xl mx-auto">
-          <div className="rounded-2xl bg-gray-50 border border-gray-100 p-10 flex flex-col md:flex-row gap-8 items-center">
-            <div className="flex-1 flex flex-col gap-4">
-              <div>
-                <div className="w-10 h-1 bg-primary rounded-full mb-4" />
-                <p className="text-sm font-semibold uppercase tracking-widest text-primary mb-2">
-                  Pediatric Care
-                </p>
-                <h2 className="text-2xl font-bold text-gray-900">
-                  Specialized Care for Your Children
-                </h2>
-              </div>
-              <p className="text-gray-600 leading-relaxed text-sm">
-                From newborn well-child visits to teen health, sports physicals,
-                immunizations, and same-day urgent care — our dedicated
-                pediatric team led by Dr. Carl Turner, DO, is here for every
-                stage of your child's growth.
-              </p>
-            </div>
-            <div className="w-full md:w-64 rounded-xl overflow-hidden shadow-sm aspect-[4/3] flex-shrink-0">
-              <img
-                src="/gumball.jpg"
-                alt="Pediatric care at OneHealth Clinics in St. George, Utah"
-                className="w-full h-full object-cover"
-              />
-            </div>
-          </div>
-        </div>
-      </section>
-
       {/* ── Divider Banner ── */}
       <section className="bg-hero-bg py-16 px-6">
         <div className="max-w-5xl mx-auto text-center flex flex-col items-center gap-4">

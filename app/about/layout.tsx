@@ -22,7 +22,11 @@ const providersSchema = JSON.stringify({
     {
       "@type": "Physician",
       name: "Grace Paradela, M.D.",
-      medicalSpecialty: ["Internal Medicine", "Acupuncture", "Obesity Medicine"],
+      medicalSpecialty: [
+        "Internal Medicine",
+        "Acupuncture",
+        "Obesity Medicine",
+      ],
       areaServed: "St. George, UT",
       image: `${siteUrl}/grace.png`,
       worksFor,
@@ -31,20 +35,16 @@ const providersSchema = JSON.stringify({
     {
       "@type": "Physician",
       name: "Jonathan Baza, DO",
-      medicalSpecialty: ["Family Medicine", "Sports Medicine", "Dermatology", "Women's Health"],
+      medicalSpecialty: [
+        "Family Medicine",
+        "Sports Medicine",
+        "Dermatology",
+        "Women's Health",
+      ],
       areaServed: "St. George, UT",
       image: `${siteUrl}/baza.png`,
       worksFor,
       url: `${siteUrl}/about#jonathan-baza`,
-    },
-    {
-      "@type": "Physician",
-      name: "Carl Turner, DO",
-      medicalSpecialty: ["Family Medicine", "Pediatrics"],
-      areaServed: "St. George, UT",
-      image: `${siteUrl}/turner.png`,
-      worksFor,
-      url: `${siteUrl}/about#carl-turner`,
     },
     {
       "@type": "Physician",
@@ -88,14 +88,14 @@ const providersSchema = JSON.stringify({
 export const metadata: Metadata = {
   title: "Our Medical Team in St. George, UT",
   description:
-    "Meet the providers at OneHealth Clinics in St. George, Utah — Dr. Grace Paradela, Dr. Jonathan Baza, Dr. Carl Turner, Stacy Sumpter DNP-C, Adam Dye FNP-C, Jacob Ewell DNP-FNP, and Noah Yoshida PA-C.",
+    "Meet the providers at OneHealth Clinics in St. George, Utah — Dr. Grace Paradela, Dr. Jonathan Baza, Stacy Sumpter DNP-C, Adam Dye FNP-C, Jacob Ewell DNP-FNP, and Noah Yoshida PA-C.",
   alternates: {
     canonical: "https://onehealthclinics.com/about",
   },
   openGraph: {
     title: "Our Medical Team in St. George, UT | OneHealth Clinics",
     description:
-      "Meet our team of experienced providers in St. George, Utah — from family medicine to pediatrics, internal medicine, and specialty care.",
+      "Meet our team of experienced providers in St. George, Utah — from family medicine, internal medicine, and specialty care.",
     url: "https://onehealthclinics.com/about",
   },
 };
