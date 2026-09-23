@@ -12,26 +12,27 @@
 
 ## File Map
 
-| Action | File | Purpose |
-|--------|------|---------|
-| Verify + commit | `components/home-hero-buttons.tsx` | Client wrapper for the two homepage CTA buttons |
-| Create | `components/google-reviews.tsx` | Async server component — fetches Places API, renders section |
-| Modify | `app/page.tsx` | Remove `"use client"`, use `HomeHeroButtons`, add `GoogleReviews`, add `revalidate` |
-| Modify | `app/about/page.tsx` | Remove dead `"use client"` + `useRouter`, add `GoogleReviews`, add `revalidate` |
-| Modify | `app/pediatrics/layout.tsx` | Add `revalidate` (page is client component) |
-| Modify | `app/services/layout.tsx` | Add `revalidate` (page is client component) |
-| Modify | `app/contact/layout.tsx` | Add `revalidate` (page is client component) |
+| Action          | File                               | Purpose                                                                             |
+| --------------- | ---------------------------------- | ----------------------------------------------------------------------------------- |
+| Verify + commit | `components/home-hero-buttons.tsx` | Client wrapper for the two homepage CTA buttons                                     |
+| Create          | `components/google-reviews.tsx`    | Async server component — fetches Places API, renders section                        |
+| Modify          | `app/page.tsx`                     | Remove `"use client"`, use `HomeHeroButtons`, add `GoogleReviews`, add `revalidate` |
+| Modify          | `app/about/page.tsx`               | Remove dead `"use client"` + `useRouter`, add `GoogleReviews`, add `revalidate`     |
+| Modify          | `app/services/layout.tsx`          | Add `revalidate` (page is client component)                                         |
+| Modify          | `app/contact/layout.tsx`           | Add `revalidate` (page is client component)                                         |
 
 ---
 
 ## Task 1: Verify HomeHeroButtons and commit
 
 **Files:**
+
 - Verify: `components/home-hero-buttons.tsx`
 
 - [ ] **Confirm the file exists with correct content**
 
 Run:
+
 ```bash
 cat components/home-hero-buttons.tsx
 ```
@@ -82,6 +83,7 @@ git commit -m "feat: extract HomeHeroButtons as client component"
 ## Task 2: Build GoogleReviews server component
 
 **Files:**
+
 - Create: `components/google-reviews.tsx`
 
 - [ ] **Create the file**
@@ -123,7 +125,7 @@ async function fetchReviews(): Promise<PlaceData | null> {
           "X-Goog-FieldMask": "reviews,rating,userRatingCount",
         },
         next: { revalidate: 86400 },
-      }
+      },
     );
     if (!res.ok) return null;
     return res.json();
@@ -251,6 +253,7 @@ git commit -m "feat: add GoogleReviews server component"
 ## Task 3: Convert homepage to server component
 
 **Files:**
+
 - Modify: `app/page.tsx`
 
 - [ ] **Replace the full file content**
@@ -405,6 +408,7 @@ npm run dev
 ```
 
 Open `http://localhost:3000`. Confirm:
+
 - Hero buttons still work (Contact + Patient Portal)
 - "Why OneHealth?" cards still render
 - Reviews section renders (dark teal, cards visible) — or is absent if env vars not yet set (expected)
@@ -421,11 +425,13 @@ git commit -m "feat: convert homepage to server component, add GoogleReviews"
 ## Task 4: Update About page
 
 **Files:**
+
 - Modify: `app/about/page.tsx`
 
 - [ ] **Remove the `"use client"` directive and dead `useRouter` import**
 
 Delete lines 1–3:
+
 ```tsx
 "use client";
 import { useRouter } from "next/navigation";
@@ -468,6 +474,7 @@ Expected: no errors.
 - [ ] **Verify in browser**
 
 Open `http://localhost:3000/about`. Confirm:
+
 - Provider profiles all render correctly
 - Reviews section appears at the bottom (or is cleanly absent without env vars)
 
@@ -483,13 +490,11 @@ git commit -m "feat: convert about page to server component, add GoogleReviews"
 ## Task 5: Add ISR to remaining page layouts
 
 **Files:**
-- Modify: `app/pediatrics/layout.tsx`
+
 - Modify: `app/services/layout.tsx`
 - Modify: `app/contact/layout.tsx`
 
 These pages are client components so `revalidate` goes in their layouts.
-
-- [ ] **Add `export const revalidate = 86400` to `app/pediatrics/layout.tsx`**
 
 Add this line immediately after the closing `};` of the `physicianSchema` definition (before `export const metadata`):
 
@@ -498,6 +503,7 @@ export const revalidate = 86400;
 ```
 
 The top of the file should look like:
+
 ```tsx
 import type { Metadata } from "next";
 
@@ -544,6 +550,7 @@ git commit -m "perf: add ISR revalidate to pediatrics, services, and contact lay
 ## Task 6: Wire up env vars and smoke test
 
 **Files:**
+
 - Create/modify: `.env.local` (never committed — already in `.gitignore`)
 
 - [ ] **Get the Place ID for OneHealth Clinics**
@@ -554,6 +561,7 @@ git commit -m "perf: add ISR revalidate to pediatrics, services, and contact lay
 4. In the embed URL, find `place_id=` — copy the value (format: `ChIJ...`)
 
 Alternatively, use the Places API to look it up:
+
 ```bash
 curl "https://maps.googleapis.com/maps/api/place/findplacefromtext/json?input=OneHealth%20Clinics%20St%20George%20Utah&inputtype=textquery&fields=place_id&key=YOUR_KEY"
 ```
@@ -578,12 +586,14 @@ npm run dev
 ```
 
 Open `http://localhost:3000`. Confirm:
+
 - Dark teal reviews section appears after "Why OneHealth?"
 - Rating badge shows score and star count in top-right
 - 3 review cards visible with reviewer photo, name, stars, text, relative time
 - "See all reviews on Google →" link at the bottom opens Google Maps in new tab
 
 Open `http://localhost:3000/about`. Confirm:
+
 - Reviews section appears at the bottom with 5 cards
 - Same visual treatment
 

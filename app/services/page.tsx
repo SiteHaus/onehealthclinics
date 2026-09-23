@@ -231,7 +231,6 @@ export default function ServicesPage() {
             { label: "Women's Health", href: "#womens-health" },
             { label: "Men's Health", href: "#mens-health" },
             { label: "Birth Control", href: "#birth-control" },
-            { label: "Pediatric Care", href: "/pediatrics" },
             { label: "Weight Loss", href: "#weight-loss" },
             { label: "Hormone Therapy", href: "#hrt" },
             { label: "NAD+ Infusions", href: "#nad-infusions" },
@@ -239,7 +238,8 @@ export default function ServicesPage() {
             { label: "Vitamin Injections", href: "#vitamin-injections" },
             { label: "PRP Injections", href: "#prp" },
           ];
-          const pillClass = "text-xs font-semibold uppercase tracking-widest text-gray-500 border border-gray-200 rounded-full px-3 py-1.5 hover:border-primary hover:text-primary transition-colors whitespace-nowrap";
+          const pillClass =
+            "text-xs font-semibold uppercase tracking-widest text-gray-500 border border-gray-200 rounded-full px-3 py-1.5 hover:border-primary hover:text-primary transition-colors whitespace-nowrap";
           return (
             <>
               {/* Mobile: horizontal scroll */}
@@ -247,7 +247,9 @@ export default function ServicesPage() {
                 <ScrollArea className="w-full">
                   <div className="flex gap-2 px-6">
                     {links.map((link) => (
-                      <a key={link.href} href={link.href} className={pillClass}>{link.label}</a>
+                      <a key={link.href} href={link.href} className={pillClass}>
+                        {link.label}
+                      </a>
                     ))}
                   </div>
                   <ScrollBar orientation="horizontal" className="hidden" />
@@ -256,7 +258,9 @@ export default function ServicesPage() {
               {/* Desktop: wrapping pills */}
               <div className="hidden lg:flex flex-wrap gap-2 px-6 max-w-5xl mx-auto">
                 {links.map((link) => (
-                  <a key={link.href} href={link.href} className={pillClass}>{link.label}</a>
+                  <a key={link.href} href={link.href} className={pillClass}>
+                    {link.label}
+                  </a>
                 ))}
               </div>
             </>
@@ -307,12 +311,6 @@ export default function ServicesPage() {
                 pediatric team led by Dr. Carl Turner, DO, is here for every
                 stage of your child's growth.
               </p>
-              <a
-                href="/pediatrics"
-                className="w-fit text-sm font-semibold text-primary border border-primary rounded-full px-5 py-2 hover:bg-primary hover:text-white transition-colors"
-              >
-                Explore Pediatric Services <ArrowRight className="h-4 w-4 inline" />
-              </a>
             </div>
             <div className="w-full md:w-64 rounded-xl overflow-hidden shadow-sm aspect-[4/3] flex-shrink-0">
               <img
