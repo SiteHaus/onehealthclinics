@@ -27,7 +27,6 @@ export const metadata: Metadata = {
     "primary care St. George Utah",
     "family medicine St. George",
     "same-day appointments",
-    "pediatrics St. George Utah",
     "urgent care St. George",
     "OneHealth Clinics",
     "family doctor St. George",
@@ -41,7 +40,7 @@ export const metadata: Metadata = {
     siteName: "OneHealth Clinics",
     title: "OneHealth Clinics | Primary Care in St. George, Utah",
     description:
-      "Same-day primary care, pediatrics, dermatology, women's health, and more in St. George, Utah. New patients always welcome.",
+      "Same-day primary care, dermatology, women's health, and more in St. George, Utah. New patients always welcome.",
     images: [
       {
         url: "/office.jpg",
@@ -55,7 +54,7 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: "OneHealth Clinics | Primary Care in St. George, Utah",
     description:
-      "Same-day primary care, pediatrics, and specialty services in St. George, Utah.",
+      "Same-day primary care, and specialty services in St. George, Utah.",
     images: ["/office.jpg"],
   },
   robots: {
@@ -78,7 +77,6 @@ const mainLinks: NavbarLinkType[] = [
   { name: "Home", target: "/" },
   { name: "About Us", target: "/about" },
   { name: "Shop", target: "/shop" },
-  { name: "Pediatrics", target: "/pediatrics" },
   { name: "Services", target: "/services" },
   { name: "Contact", target: "/contact" },
 ];
@@ -117,12 +115,7 @@ const localBusinessSchema = JSON.stringify({
       closes: "17:00",
     },
   ],
-  medicalSpecialty: [
-    "Family Medicine",
-    "Pediatrics",
-    "Dermatology",
-    "Women's Health",
-  ],
+  medicalSpecialty: ["Family Medicine", "Dermatology", "Women's Health"],
   priceRange: "$$",
   sameAs: [
     "https://www.facebook.com/onehealthclinics",
