@@ -20,16 +20,6 @@ const providers = [
     image: "/baza.png",
   },
   {
-    slug: "carl-turner",
-    navLabel: "Dr. Turner",
-    name: "Carl Turner, DO",
-    title: "Board Certified in Family Medicine",
-    bio: `Bringing smiles, stethoscopes, and sometimes balloon animals to the exam room, Dr. Turner is passionate about providing care in a welcoming, family-focused environment. From newborn checkups to well-woman exams to grandpa’s blood pressure, Dr. Turner enjoys caring for every member of the family.
-Originally from Bountiful, Utah, Dr. Turner completed undergraduate studies at Weber State University before heading to Des Moines University for medical school. He then trained at Wesley Medical Center in Wichita, Kansas. He has over a decade of experience in primary care and has enjoyed serving families in the rural community of McPherson, Kansas, for the past eight years where he focused on pediatric care and women’s health. He and his wife enjoy the noise of their five wonderful children, three girls and two boys.
-Outside of the clinic, Dr. Turner loves watching and playing sports, spending time withhis family, and being a part of the community.`,
-    image: "/turner.png",
-  },
-  {
     slug: "stacy-sumpter",
     navLabel: "Stacy Sumpter",
     name: "Stacy Sumpter, DNP-C",
@@ -94,7 +84,8 @@ export default function AboutPage() {
       {/* Quick Nav */}
       <section className="bg-white border-b border-gray-100 py-3 sticky top-16 z-20 shadow-sm">
         {(() => {
-          const pillClass = "text-xs font-semibold uppercase tracking-widest text-gray-500 border border-gray-200 rounded-full px-3 py-1.5 hover:border-primary hover:text-primary transition-colors whitespace-nowrap";
+          const pillClass =
+            "text-xs font-semibold uppercase tracking-widest text-gray-500 border border-gray-200 rounded-full px-3 py-1.5 hover:border-primary hover:text-primary transition-colors whitespace-nowrap";
           return (
             <>
               {/* Mobile: horizontal scroll */}
@@ -102,7 +93,9 @@ export default function AboutPage() {
                 <ScrollArea className="w-full">
                   <div className="flex gap-2 px-6">
                     {providers.map((p) => (
-                      <a key={p.slug} href={`#${p.slug}`} className={pillClass}>{p.navLabel}</a>
+                      <a key={p.slug} href={`#${p.slug}`} className={pillClass}>
+                        {p.navLabel}
+                      </a>
                     ))}
                   </div>
                   <ScrollBar orientation="horizontal" className="hidden" />
@@ -111,7 +104,9 @@ export default function AboutPage() {
               {/* Desktop: wrapping pills */}
               <div className="hidden lg:flex flex-wrap gap-2 px-6 max-w-5xl mx-auto">
                 {providers.map((p) => (
-                  <a key={p.slug} href={`#${p.slug}`} className={pillClass}>{p.navLabel}</a>
+                  <a key={p.slug} href={`#${p.slug}`} className={pillClass}>
+                    {p.navLabel}
+                  </a>
                 ))}
               </div>
             </>

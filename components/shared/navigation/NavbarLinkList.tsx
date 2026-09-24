@@ -38,11 +38,6 @@ const clinicServiceLinks = [
     href: "/services#birth-control",
     description: "LARCs, IUDs, and contraceptive counseling",
   },
-  {
-    label: "Pediatric Care",
-    href: "/pediatrics",
-    description: "Well-child visits, immunizations, sports physicals",
-  },
 ];
 
 const specialtyServiceLinks = [
@@ -145,7 +140,8 @@ export const NavbarLinkList = ({ links }: { links: NavbarLinkType[] }) => {
                       href="/services"
                       className="text-xs font-semibold text-primary hover:underline"
                     >
-                      View all services <ArrowRight className="h-3 w-3 inline" />
+                      View all services{" "}
+                      <ArrowRight className="h-3 w-3 inline" />
                     </Link>
                   </div>
                 </NavigationMenuContent>
@@ -159,7 +155,7 @@ export const NavbarLinkList = ({ links }: { links: NavbarLinkType[] }) => {
                   {link.name}
                 </Link>
               </NavigationMenuItem>
-            )
+            ),
           )}
         </NavigationMenuList>
       </NavigationMenu>

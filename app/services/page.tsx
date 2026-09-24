@@ -231,7 +231,6 @@ export default function ServicesPage() {
             { label: "Women's Health", href: "#womens-health" },
             { label: "Men's Health", href: "#mens-health" },
             { label: "Birth Control", href: "#birth-control" },
-            { label: "Pediatric Care", href: "/pediatrics" },
             { label: "Weight Loss", href: "#weight-loss" },
             { label: "Hormone Therapy", href: "#hrt" },
             { label: "NAD+ Infusions", href: "#nad-infusions" },
@@ -239,7 +238,8 @@ export default function ServicesPage() {
             { label: "Vitamin Injections", href: "#vitamin-injections" },
             { label: "PRP Injections", href: "#prp" },
           ];
-          const pillClass = "text-xs font-semibold uppercase tracking-widest text-gray-500 border border-gray-200 rounded-full px-3 py-1.5 hover:border-primary hover:text-primary transition-colors whitespace-nowrap";
+          const pillClass =
+            "text-xs font-semibold uppercase tracking-widest text-gray-500 border border-gray-200 rounded-full px-3 py-1.5 hover:border-primary hover:text-primary transition-colors whitespace-nowrap";
           return (
             <>
               {/* Mobile: horizontal scroll */}
@@ -247,7 +247,9 @@ export default function ServicesPage() {
                 <ScrollArea className="w-full">
                   <div className="flex gap-2 px-6">
                     {links.map((link) => (
-                      <a key={link.href} href={link.href} className={pillClass}>{link.label}</a>
+                      <a key={link.href} href={link.href} className={pillClass}>
+                        {link.label}
+                      </a>
                     ))}
                   </div>
                   <ScrollBar orientation="horizontal" className="hidden" />
@@ -256,7 +258,9 @@ export default function ServicesPage() {
               {/* Desktop: wrapping pills */}
               <div className="hidden lg:flex flex-wrap gap-2 px-6 max-w-5xl mx-auto">
                 {links.map((link) => (
-                  <a key={link.href} href={link.href} className={pillClass}>{link.label}</a>
+                  <a key={link.href} href={link.href} className={pillClass}>
+                    {link.label}
+                  </a>
                 ))}
               </div>
             </>
@@ -284,44 +288,6 @@ export default function ServicesPage() {
               )}
             </div>
           ))}
-        </div>
-      </section>
-
-      {/* ── Pediatric Care Callout ── */}
-      <section className="bg-white px-6 pb-20">
-        <div className="max-w-5xl mx-auto">
-          <div className="rounded-2xl bg-gray-50 border border-gray-100 p-10 flex flex-col md:flex-row gap-8 items-center">
-            <div className="flex-1 flex flex-col gap-4">
-              <div>
-                <div className="w-10 h-1 bg-primary rounded-full mb-4" />
-                <p className="text-sm font-semibold uppercase tracking-widest text-primary mb-2">
-                  Pediatric Care
-                </p>
-                <h2 className="text-2xl font-bold text-gray-900">
-                  Specialized Care for Your Children
-                </h2>
-              </div>
-              <p className="text-gray-600 leading-relaxed text-sm">
-                From newborn well-child visits to teen health, sports physicals,
-                immunizations, and same-day urgent care — our dedicated
-                pediatric team led by Dr. Carl Turner, DO, is here for every
-                stage of your child's growth.
-              </p>
-              <a
-                href="/pediatrics"
-                className="w-fit text-sm font-semibold text-primary border border-primary rounded-full px-5 py-2 hover:bg-primary hover:text-white transition-colors"
-              >
-                Explore Pediatric Services <ArrowRight className="h-4 w-4 inline" />
-              </a>
-            </div>
-            <div className="w-full md:w-64 rounded-xl overflow-hidden shadow-sm aspect-[4/3] flex-shrink-0">
-              <img
-                src="/gumball.jpg"
-                alt="Pediatric care at OneHealth Clinics in St. George, Utah"
-                className="w-full h-full object-cover"
-              />
-            </div>
-          </div>
         </div>
       </section>
 
