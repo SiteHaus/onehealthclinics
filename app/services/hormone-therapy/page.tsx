@@ -30,7 +30,16 @@ export default function HormoneTherapyPage() {
           <div className="flex-1 flex flex-col gap-6">
             <div>
               <div className="w-10 h-1 bg-primary rounded-full mb-4" />
-              <h2 className="text-2xl font-bold mb-4">Bioidentical HRT & Pellet Therapy</h2>
+              <div className="flex flex-col sm:flex-row sm:items-center gap-3 sm:gap-4 mb-4">
+                <h2 className="text-2xl font-bold">Bioidentical HRT & Pellet Therapy</h2>
+                <img
+                  src="/bhrtcert.png"
+                  alt="Certified in Advanced Bio-identical Hormone Replacement Therapy"
+                  title="Certified in Advanced Bio-identical Hormone Replacement Therapy"
+                  loading="lazy"
+                  className="h-20 md:h-24 w-auto object-contain shrink-0 self-start sm:self-auto"
+                />
+              </div>
             </div>
             <p className="text-gray-600 leading-relaxed">
               We have completed additional training in bioidentical hormone replacement therapy and pellet therapy. HRT helps restore hormonal balance when your body's natural production declines, relieving symptoms such as fatigue, mood changes, weight gain, sleep disturbances, and low libido.

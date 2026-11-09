@@ -2,7 +2,29 @@ import { ScrollArea, ScrollBar } from "@/components/ui/scroll-area";
 
 export const revalidate = 86400;
 
-const providers = [
+type Certification = {
+  src: string; // path to the badge/certificate image, e.g. "/certs/abim.png"
+  alt: string; // accessible description, also shown as a tooltip
+};
+
+type Provider = {
+  slug: string;
+  navLabel: string;
+  name: string;
+  title: string;
+  bio: string;
+  image: string;
+  imageFilter?: string;
+  certifications?: Certification[];
+};
+
+// Example usage on any provider:
+// certifications: [
+//   { src: "/certs/abim.png", alt: "American Board of Internal Medicine" },
+//   { src: "/certs/obesity-medicine.png", alt: "American Board of Obesity Medicine" },
+// ],
+
+const providers: Provider[] = [
   {
     slug: "grace-paradela",
     navLabel: "Dr. Paradela",
@@ -28,6 +50,12 @@ const providers = [
 
 She is a member of the American Academy of Nurse Practitioners, Sigma Theta Tau Zeta Kappa (changed) chapter, and Golden Key International Honor Society and Certified in Advanced Bio-identical hormone replacement therapy. Stacy is married and has three grown children. Together they enjoy boating, trail riding, hiking, and any outdoor activity that Southern Utah has to offer.`,
     image: "/sumpter.png",
+    certifications: [
+      {
+        src: "/bhrtcert.png",
+        alt: "Certified in Advanced Bio-identical Hormone Replacement Therapy",
+      },
+    ],
   },
   {
     slug: "adam-dye",
@@ -162,7 +190,6 @@ export default function AboutPage() {
                   } items-center gap-10 scroll-mt-28`}
                 >
                   <div className="w-full md:w-2/5 shrink-0 h-[450px] md:h-[500px]">
-                    {" "}
                     <img
                       src={provider.image}
                       alt={provider.name}
@@ -180,8 +207,30 @@ export default function AboutPage() {
                     } items-center text-center md:text-left`}
                   >
                     <div className="w-10 h-1 bg-primary rounded-full" />
-                    <h3 className="text-2xl font-bold">{provider.name}</h3>
-                    <p className="text-primary font-medium">{provider.title}</p>
+                    <div className="flex flex-col sm:flex-row items-center gap-3 sm:gap-4">
+                      <div>
+                        <h3 className="text-2xl font-bold">{provider.name}</h3>
+                        <p className="text-primary font-medium">
+                          {provider.title}
+                        </p>
+                      </div>
+
+                      {provider.certifications &&
+                        provider.certifications.length > 0 && (
+                          <div className="flex items-center gap-2 shrink-0">
+                            {provider.certifications.map((cert) => (
+                              <img
+                                key={cert.src}
+                                src={cert.src}
+                                alt={cert.alt}
+                                title={cert.alt}
+                                loading="lazy"
+                                className="h-20 md:h-24 w-auto object-contain"
+                              />
+                            ))}
+                          </div>
+                        )}
+                    </div>
                     <p className="text-gray-500 leading-relaxed">
                       {provider.bio}
                     </p>

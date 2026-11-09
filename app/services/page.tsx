@@ -12,6 +12,22 @@ import { ArrowRight } from "lucide-react";
 
 // ─── Data ────────────────────────────────────────────────────────────────────
 
+type Certification = {
+  src: string; // path to the badge/certificate image, e.g. "/bhrtcert.png"
+  alt: string; // accessible description, also shown as a tooltip
+};
+
+type SpecialtyService = {
+  id: string;
+  href?: string;
+  title: string;
+  label: string;
+  image: string;
+  imageAlt: string;
+  description: string;
+  certifications?: Certification[];
+};
+
 const clinicServices = [
   {
     id: "primary-care",
@@ -60,7 +76,7 @@ const clinicServices = [
   },
 ];
 
-const specialtyServices = [
+const specialtyServices: SpecialtyService[] = [
   {
     id: "weight-loss",
     href: "/services/weight-loss",
@@ -80,6 +96,12 @@ const specialtyServices = [
     imageAlt: "Hormone replacement therapy",
     description:
       "We have completed additional training in bioidentical hormone replacement therapy and pellet therapy. HRT helps restore hormonal balance when your body's natural production declines, relieving symptoms such as fatigue, mood changes, weight gain, sleep disturbances, and low libido. Available in topical, oral, injectable, and pellet forms, HRT supports improved energy, mental clarity, and overall well-being.",
+    certifications: [
+      {
+        src: "/bhrtcert.png",
+        alt: "Certified in Advanced Bio-identical Hormone Replacement Therapy",
+      },
+    ],
   },
   {
     id: "nad-infusions",
@@ -168,7 +190,7 @@ function ServiceCard({
 function SpecialtyCard({
   service,
 }: {
-  service: (typeof specialtyServices)[0];
+  service: SpecialtyService;
 }) {
   return (
     <div className="bg-white rounded-2xl overflow-hidden shadow-sm border border-gray-100 flex flex-col">
@@ -183,7 +205,24 @@ function SpecialtyCard({
         <p className="text-sm font-semibold uppercase tracking-widest text-primary">
           {service.label}
         </p>
-        <h3 className="text-lg font-bold text-gray-900">{service.title}</h3>
+        <div className="flex items-center justify-between gap-3">
+          <h3 className="text-lg font-bold text-gray-900">{service.title}</h3>
+
+          {service.certifications && service.certifications.length > 0 && (
+            <div className="flex items-center gap-2 shrink-0">
+              {service.certifications.map((cert) => (
+                <img
+                  key={cert.src}
+                  src={cert.src}
+                  alt={cert.alt}
+                  title={cert.alt}
+                  loading="lazy"
+                  className="h-16 w-auto object-contain"
+                />
+              ))}
+            </div>
+          )}
+        </div>
         <p className="text-gray-600 leading-relaxed text-sm flex-1">
           {service.description}
         </p>
